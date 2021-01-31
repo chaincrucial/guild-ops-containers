@@ -2,7 +2,7 @@ name: Get latest CNCLI release version
 on:
   schedule:
     - cron:  '0 */8 * * *'
-  workflow:
+  workflow_dispatch:
 
 jobs:
   get-version:
