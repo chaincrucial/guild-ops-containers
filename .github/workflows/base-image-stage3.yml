@@ -1,0 +1,25 @@
+name: Container Image CD base Stage 3
+
+on: 
+  push:
+    paths:
+      - 'containers/guild-ops-base/release-versions/cncli-latest.txt'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: centos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: docker login
+      run: |
+        docker login -u ${{ secrets.DOCKER_HUB_HUB_USER }} -p ${{ secrets.DOCKER_HUB_HUB_PASSWORD }}
+    - name: Compiling new node software suite
+      run: |
+        docker build . --file containers/guild-ops-base/stage3/ --compress --tag chaincrucial/guild-ops-base:stage3
+    - name: docker push stage3
+      run: |
+        docker push chaincrucial/guild-ops-base:stage3
+    - name: docker dispatch stage 4
+      run: |
+        curl -XPOST -u "${{ secrets.ACTIONS_SERVICE_ACCOUNT}}:${{secrets.ACTIONS_SERVICE_PASSWORD }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/chaincrucial/guild-ops-containers/actions/workflows/base-image-stage4.yml/dispatches --data '{"ref": "master"}'
