@@ -21,7 +21,7 @@ jobs:
       - name: Commit latest release version
         if: steps.git-check.outputs.modified == 'true'
         run: |
-          git config --global user.name ${{ secrets.ACTIONS_SERVICE_ACCOUNT }}
-          git config --global user.email ${{ secrets.ACTIONS_SERVICE_EMAIL }}
+          git config --global user.name ${{ secrets.REPO_SCOPED_USER }}
+          git config --global user.email ${{ secrets.REPO_SCOPED_EMAIL }}
           git commit -am "New release version ${VERSION}"
           git push
