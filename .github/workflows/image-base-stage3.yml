@@ -22,4 +22,4 @@ jobs:
         docker push chaincrucial/guild-ops-base:stage3
     - name: docker dispatch stage 4
       run: |
-        curl -XPOST -u "${{ secrets.ACTIONS_SERVICE_ACCOUNT}}:${{secrets.ACTIONS_SERVICE_PASSWORD }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/chaincrucial/guild-ops-containers/actions/workflows/base-image-stage4.yml/dispatches --data '{"ref": "master"}'
+        curl -XPOST -u "${{ secrets.ACTIONS_SERVICE_ACCOUNT}}:${{secrets.ACTIONS_SERVICE_PASSWORD }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/chaincrucial/guild-ops-containers/actions/workflows/image-base-stage4.yml/dispatches --data '{"ref": "master"}'
