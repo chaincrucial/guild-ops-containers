@@ -1,0 +1,39 @@
+FROM centos:centos8.3.2011
+
+ENV \
+    ENV=/etc/profile \
+    LC_ALL=en_US.UTF-8 \
+    LANG=en_US.UTF-8 \
+    LANGUAGE=en_US.UTF-8 \
+    CNODE_HOME=/opt/cardano/cnode \
+    LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH" \
+    PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH" \
+    PATH=/root/.cabal/bin:/root/.ghcup/bin:/root/.local/bin:/root/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
+
+COPY --from=chaincrucial/guild-ops-base:stage3 /opt/cardano /opt/cardano
+COPY --from=chaincrucial/guild-ops-base:stage3 /root/tmp /root/tmp
+COPY --from=chaincrucial/guild-ops-base:stage3 /root/.cabal/bin/* /root/.cabal/bin/
+COPY --from=chaincrucial/guild-ops-base:stage3 /root/.cargo/bin/* /root/.cargo/bin/
+COPY --from=chaincrucial/guild-ops-base:stage3 /usr/local/bin /usr/local/bin
+COPY --from=chaincrucial/guild-ops-base:stage3 /usr/local/lib /usr/local/lib
+COPY --from=chaincrucial/guild-ops-base:stage3 /root/bin/cardano-hw-cli/cardano-hw-cli /root/.cabal/bin/
+
+RUN /bin/bash -c "dnf -y install epel-release&& yum -y clean all && rm -rf /var/cache/yum/"
+RUN /bin/bash -c "dnf -y install python3 pkgconfig libffi-devel gmp-devel openssl-devel ncurses-libs ncurses-compat-libs libsodium-devel zlib-devel jq tmux gnupg libtool iproute bc tcptraceroute net-tools e2fsprogs wget glibc-locale-source glibc-langpack-en sqlite libsqlite3x-devel ncurses vim && yum -y clean all && rm -rf /var/cache/yum/"
+RUN ln -s /root/.cabal/bin/cardano-node /usr/local/bin/
+RUN ln -s /root/.cabal/bin/cardano-cli /usr/local/bin/
+RUN ln -s /root/.cargo/bin/cncli /usr/local/bin/
+RUN sed -i 's/^#CONFIG=/CONFIG=/' /opt/cardano/cnode/scripts/env
+RUN sed -i 's/^#SOCKET=/SOCKET=/' /opt/cardano/cnode/scripts/env
+RUN sed -i 's/^#TOPOLOGY=/TOPOLOGY=/' /opt/cardano/cnode/scripts/env
+RUN sed -i 's/^#LOG_DIR=/LOG_DIR=/' /opt/cardano/cnode/scripts/env
+RUN sed -i 's/^#DB_DIR=/DB_DIR=/' /opt/cardano/cnode/scripts/env
+RUN sed -i 's/^#EKG_HOST=/EKG_HOST=/' /opt/cardano/cnode/scripts/env
+RUN sed -i 's/^#EKG_PORT=/EKG_PORT=/' /opt/cardano/cnode/scripts/env
+RUN sed -i 's/^#EKG_TIMEOUT=/EKG_TIMEOUT=/' /opt/cardano/cnode/scripts/env
+RUN sed -i 's/^#CURL_TIMEOUT=/CURL_TIMEOUT=/' /opt/cardano/cnode/scripts/env
+RUN sed -i 's/^#BLOCKLOG_DIR=/BLOCKLOG_DIR=/' /opt/cardano/cnode/scripts/env
+RUN sed -i 's%^#BLOCKLOG_TZ="UTC"%BLOCKLOG_TZ="America/Los_Angeles"%' /opt/cardano/cnode/scripts/env
+RUN sed -i 's/^ENABLE_CHATTR=true/ENABLE_CHATTR=false/' /opt/cardano/cnode/scripts/cntools.config
+
+

@@ -1,0 +1,18 @@
+FROM chaincrucial/cardano-node:stage1
+
+ENV PATH=/root/.cabal/bin:/root/.ghcup/bin:/root/.local/bin:/root/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
+RUN . /root/.bashrc &&\
+    if [ -d /root/git ] ; then cd /root/git ; else mkdir /root/git  ; fi ;\
+    cd /root/git &&\
+    rm -rf ./cardano-node ;\
+    git clone https://github.com/input-output-hk/cardano-node &&\
+    cd cardano-node &&\
+    git fetch --tags --all &&\
+    git pull &&\
+    curl -o cardano-node-latest.txt https://raw.githubusercontent.com/chaincrucial/guild-ops-containers/master/containers/guild-ops-base/cardano-node-latest.txt &&\
+    CNODE_VERSION=$(cat cardano-node-latest.txt) &&\
+    git checkout ${CNODE_VERSION} &&\
+    git status &&\
+    wget https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/cabal.project.local &&\
+    cabal update ; cabal update ; /opt/cardano/cnode/scripts/cabal-build-all.sh
+RUN . /root/.bashrc ; /root/.cabal/bin/cardano-cli version ; /root/.cabal/bin/cardano-node version
