@@ -9,7 +9,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: docker login
       run: |
-        docker login -u ${{ secrets.DOCKER_HUB_USER }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
+        docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
     - name: Compiling new node software suite
       run: |
         docker build . --file containers/guild-ops-cncli/ --compress --tag chaincrucial/guild-ops-cncli:stage
