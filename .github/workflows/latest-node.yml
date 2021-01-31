@@ -16,7 +16,7 @@ jobs:
           curl -sL https://github.com/input-output-hk/cardano-node/releases/latest | grep "tag" | head -1 | sed -n -e 's/^.*tag\///p' | cut -d "\"" -f 1 > containers/guild-ops-base/cardano-node-latest.txt
       - name: Assigns release version
         run: |
-          VERSION=$(cat ./containers/guild-ops-base/release-versions/cardano-node-latest.txt)
+          VERSION=$(cat ./containers/guild-ops-base/cardano-node-latest.txt)
       - name: Check for modified files
         id: git-check
         run: echo ::set-output name=modified::$([ -z "`git status --porcelain`" ] && echo "false" || echo "true")
