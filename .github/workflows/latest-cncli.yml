@@ -13,7 +13,7 @@ jobs:
           token: ${{ secrets.REPO_SCOPED_TOKEN }}
       - name: Fetch cncli release version
         run: |
-          curl -sL https://github.com/AndrewWestberg/cncli/releases/latest | grep "tag" | head -1 | sed -n -e 's/^.*tag\///p' | cut -d "\"" -f 1 > containers/guild-ops-base/release-versions/cncli-latest.txt
+          curl -sL https://github.com/AndrewWestberg/cncli/releases/latest | grep "tag" | head -1 | sed -n -e 's/^.*tag\///p' | cut -d "\"" -f 1 > containers/guild-ops-base/cncli-latest.txt
       - name: Assigns release version
         run: |
           VERSION=$(cat ./containers/guild-ops-base/release-versions/cncli-latest.txt)

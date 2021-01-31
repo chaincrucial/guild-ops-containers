@@ -13,7 +13,7 @@ jobs:
           token: ${{ secrets.REPO_SCOPED_TOKEN }}
       - name: Fetch node release version
         run: |
-          curl -sL https://github.com/input-output-hk/cardano-node/releases/latest | grep "tag" | head -1 | sed -n -e 's/^.*tag\///p' | cut -d "\"" -f 1 > containers/guild-ops-base/release-versions/cardano-node-latest.txt
+          curl -sL https://github.com/input-output-hk/cardano-node/releases/latest | grep "tag" | head -1 | sed -n -e 's/^.*tag\///p' | cut -d "\"" -f 1 > containers/guild-ops-base/cardano-node-latest.txt
       - name: Assigns release version
         run: |
           VERSION=$(cat ./containers/guild-ops-base/release-versions/cardano-node-latest.txt)
