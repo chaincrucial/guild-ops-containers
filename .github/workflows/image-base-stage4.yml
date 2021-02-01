@@ -10,7 +10,7 @@ jobs:
     - name: docker login
       run: |
         docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
-    - name: Compiling new node software suite
+    - name: Build guild-ops-base final image
       run: |
         docker build . --file containers/guild-ops-base/stage4 --compress --tag chaincrucial/guild-ops-base:stage4
     - name: docker push stage4 and latest
