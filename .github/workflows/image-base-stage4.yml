@@ -15,8 +15,11 @@ jobs:
         docker build . --file containers/guild-ops-base/stage4 --compress --tag chaincrucial/guild-ops-base:stage4
     - name: docker push stage4 and latest
       run: |
-        docker push chaincrucial/guild-ops-base:stage4
+        TIMESTAMP=$(date +%s)
+        docker tag chaincrucial/guild-ops-base:stage4 chaincrucial/guild-ops-base:${TIMESTAMP}
         docker tag chaincrucial/guild-ops-base:stage4 chaincrucial/guild-ops-base:latest
+        docker push chaincrucial/guild-ops-base:stage4
+        docker push chaincrucial/guild-ops-base:${TIMESTAMP}
         docker push chaincrucial/guild-ops-base:latest
     - name: docker dispatch cnode stage
       run: |
