@@ -10,6 +10,7 @@ ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/f
 ADD https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/testnet-byron-genesis.json /opt/cardano/cnode/files/ 
 ADD https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/testnet-shelley-genesis.json /opt/cardano/cnode/files/ 
 ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/config-combinator.json /opt/cardano/cnode/files/
+ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/config-combinator.json /opt/cardano/cnode/files/config-testnet.json
  
 # HYDRA LAUNCHPAD TESTNET CFG 
 ADD https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/launchpad-byron-genesis.json /opt/cardano/cnode/files/ 
