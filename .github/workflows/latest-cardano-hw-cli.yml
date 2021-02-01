@@ -1,4 +1,4 @@
-name: Get latest Node release version
+name: Get latest Cardano HW CLI release version
 on:
   schedule:
     - cron:  '0 */8 * * *'
