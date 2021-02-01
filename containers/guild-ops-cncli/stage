@@ -1,4 +1,4 @@
-FROM chaincrucial/guild-ops-base:latest
+FROM chaincrucial/guild-ops-base:stage4
 
 ENTRYPOINT ["/opt/cardano/cnode/scripts/cncli.sh"]
 RUN ["chmod", "+x", "/opt/cardano/cnode/scripts/cncli.sh"]
