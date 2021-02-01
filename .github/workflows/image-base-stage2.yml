@@ -3,7 +3,7 @@ name: Container Image CD base Stage 2
 on:
   push:
     paths:
-      - 'containers/guild-ops-base/guild-ops-latest.txt'
+      - 'containers/guild-ops-base/guild-operators-latest.txt'
   workflow_dispatch:
 
 jobs:
