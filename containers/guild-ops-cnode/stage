@@ -1,4 +1,4 @@
-FROM localhost/chaincrucial/guild-ops-base:stage4
+FROM haincrucial/guild-ops-base:stage4
 
 # HYDRA CFG 
 ADD https://hydra.iohk.io/build/3670619/download/1/mainnet-topology.json /opt/cardano/cnode/files/ 
