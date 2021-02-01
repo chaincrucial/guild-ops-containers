@@ -23,6 +23,7 @@ jobs:
       - name: Commit latest release version
         if: steps.git-check.outputs.modified == 'true'
         run: |
+          VERSION=$(cat ./containers/guild-ops-base/cncli-latest.txt)
           git config --global user.name ${{ secrets.REPO_SCOPED_USER }}
           git config --global user.email ${{ secrets.REPO_SCOPED_EMAIL }}
           git commit -am "New cncli release version ${VERSION}"
