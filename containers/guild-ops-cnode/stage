@@ -16,6 +16,9 @@ ADD https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finishe
 ADD https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/launchpad-shelley-genesis.json /opt/cardano/cnode/files/ 
 ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/config-launchpad.json /opt/cardano/cnode/files/ 
 
+# HYDRA STAGING TESTNET CFG
+ADD https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/staging-byron-genesis.json /opt/cardano/cnode/files/
+ADD https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/staging-shelley-genesis.json /opt/cardano/cnode/files/
 ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/config-staging.json /opt/cardano/cnode/files/
 
 # ENTRY SCRIPT 
