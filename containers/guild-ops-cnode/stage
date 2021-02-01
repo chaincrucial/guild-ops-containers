@@ -9,18 +9,15 @@ ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/f
 # HYDRA TESTNET CFG 
 ADD https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/testnet-byron-genesis.json /opt/cardano/cnode/files/ 
 ADD https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/testnet-shelley-genesis.json /opt/cardano/cnode/files/ 
-ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/config-combinator.json /opt/cardano/cnode/files/ 
- 
-# HYDRA ALLEGRA TESTNET CFG 
-ADD https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/allegra-byron-genesis.json /opt/cardano/cnode/files/ 
-ADD https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/allegra-shelley-genesis.json /opt/cardano/cnode/files/ 
-ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/config-allegra.json /opt/cardano/cnode/files/ 
+ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/config-combinator.json /opt/cardano/cnode/files/
  
 # HYDRA LAUNCHPAD TESTNET CFG 
 ADD https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/launchpad-byron-genesis.json /opt/cardano/cnode/files/ 
 ADD https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/launchpad-shelley-genesis.json /opt/cardano/cnode/files/ 
 ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/config-launchpad.json /opt/cardano/cnode/files/ 
- 
+
+ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/config-staging.json /opt/cardano/cnode/files/
+
 # ENTRY SCRIPT 
 ADD https://raw.githubusercontent.com/TrevorBenson/cardano-node/entrypoint-leverage-cnode.sh/entrypoint.sh /opt/cardano/cnode/scripts/docker-entrypoint.sh 
 
