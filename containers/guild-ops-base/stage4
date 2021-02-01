@@ -11,6 +11,7 @@ ENV \
     PATH=/root/.cabal/bin:/root/.ghcup/bin:/root/.local/bin:/root/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
 
 COPY --from=chaincrucial/guild-ops-base:stage3 /opt/cardano /opt/cardano
+COPY --from=chaincrucial/guild-ops-base:stage3 /opt/cardano/cnode/files/config-combinator.json /opt/cardano/cardano/cnode/files/config-testnet.json
 COPY --from=chaincrucial/guild-ops-base:stage3 /root/tmp /root/tmp
 COPY --from=chaincrucial/guild-ops-base:stage3 /root/.cabal/bin/* /root/.cabal/bin/
 COPY --from=chaincrucial/guild-ops-base:stage3 /root/.cargo/bin/* /root/.cargo/bin/
