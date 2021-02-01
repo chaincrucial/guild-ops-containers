@@ -22,7 +22,7 @@ ADD https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finishe
 ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/config-staging.json /opt/cardano/cnode/files/
 
 # ENTRY SCRIPT 
-ADD https://raw.githubusercontent.com/TrevorBenson/cardano-node/entrypoint-leverage-cnode.sh/entrypoint.sh /opt/cardano/cnode/scripts/docker-entrypoint.sh 
+ADD https://raw.githubusercontent.com/TrevorBenson/cardano-node/entrypoint-leverage-cnode.sh/cnode-entrypoint.sh /opt/cardano/cnode/scripts/docker-entrypoint.sh
 
 ENTRYPOINT ["/opt/cardano/cnode/scripts/docker-entrypoint.sh"]
 RUN ["chmod", "+x", "/opt/cardano/cnode/scripts/docker-entrypoint.sh"]
