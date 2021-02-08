@@ -17,22 +17,32 @@ COPY --from=chaincrucial/guild-ops-base:stage3 /root/.cargo/bin/* /root/.cargo/b
 COPY --from=chaincrucial/guild-ops-base:stage3 /usr/local/lib /usr/local/lib
 COPY --from=chaincrucial/guild-ops-base:stage3 /root/bin/cardano-hw-cli/cardano-hw-cli /root/.cabal/bin/
 
+# HYDRA CFG 
+ADD https://hydra.iohk.io/build/3670619/download/1/mainnet-topology.json /opt/cardano/cnode/files/ 
+ADD https://hydra.iohk.io/build/3670619/download/1/mainnet-shelley-genesis.json /opt/cardano/cnode/files/ 
+ADD https://hydra.iohk.io/build/3670619/download/1/mainnet-byron-genesis.json /opt/cardano/cnode/files/ 
+ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/config-mainnet.json /opt/cardano/cnode/files/ 
+ 
+# HYDRA TESTNET CFG 
+ADD https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/testnet-byron-genesis.json /opt/cardano/cnode/files/ 
+ADD https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/testnet-shelley-genesis.json /opt/cardano/cnode/files/ 
+ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/config-combinator.json /opt/cardano/cnode/files/
+ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/config-combinator.json /opt/cardano/cnode/files/config-testnet.json
+ 
+# HYDRA LAUNCHPAD TESTNET CFG 
+ADD https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/launchpad-byron-genesis.json /opt/cardano/cnode/files/ 
+ADD https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/launchpad-shelley-genesis.json /opt/cardano/cnode/files/ 
+ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/config-launchpad.json /opt/cardano/cnode/files/ 
+
+# HYDRA STAGING TESTNET CFG
+ADD https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/staging-byron-genesis.json /opt/cardano/cnode/files/
+ADD https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/staging-shelley-genesis.json /opt/cardano/cnode/files/
+ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/config-staging.json /opt/cardano/cnode/files/
+
 RUN /bin/bash -c "dnf -y install epel-release&& yum -y clean all && rm -rf /var/cache/yum/"
 RUN /bin/bash -c "dnf -y install python3 pkgconfig libffi-devel gmp-devel openssl-devel ncurses-libs ncurses-compat-libs libsodium-devel zlib-devel jq tmux gnupg libtool iproute bc tcptraceroute net-tools e2fsprogs wget glibc-locale-source glibc-langpack-en sqlite libsqlite3x-devel ncurses vim && yum -y clean all && rm -rf /var/cache/yum/"
 RUN ln -s /root/.cabal/bin/cardano-node /usr/local/bin/
 RUN ln -s /root/.cabal/bin/cardano-cli /usr/local/bin/
 RUN ln -s /root/.cargo/bin/cncli /usr/local/bin/
-RUN sed -i 's/^#CONFIG=/CONFIG=/' /opt/cardano/cnode/scripts/env
-RUN sed -i 's/^#SOCKET=/SOCKET=/' /opt/cardano/cnode/scripts/env
-RUN sed -i 's/^#TOPOLOGY=/TOPOLOGY=/' /opt/cardano/cnode/scripts/env
-RUN sed -i 's/^#LOG_DIR=/LOG_DIR=/' /opt/cardano/cnode/scripts/env
-RUN sed -i 's/^#DB_DIR=/DB_DIR=/' /opt/cardano/cnode/scripts/env
-RUN sed -i 's/^#EKG_HOST=/EKG_HOST=/' /opt/cardano/cnode/scripts/env
-RUN sed -i 's/^#EKG_PORT=/EKG_PORT=/' /opt/cardano/cnode/scripts/env
-RUN sed -i 's/^#EKG_TIMEOUT=/EKG_TIMEOUT=/' /opt/cardano/cnode/scripts/env
-RUN sed -i 's/^#CURL_TIMEOUT=/CURL_TIMEOUT=/' /opt/cardano/cnode/scripts/env
-RUN sed -i 's/^#BLOCKLOG_DIR=/BLOCKLOG_DIR=/' /opt/cardano/cnode/scripts/env
 RUN sed -i 's%^#BLOCKLOG_TZ="UTC"%BLOCKLOG_TZ="America/Los_Angeles"%' /opt/cardano/cnode/scripts/env
 RUN sed -i 's/^ENABLE_CHATTR=true/ENABLE_CHATTR=false/' /opt/cardano/cnode/scripts/cntools.config
-
-
