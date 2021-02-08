@@ -12,7 +12,7 @@ jobs:
         docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
     - name: enable experimental features for squashing image
       run: |
-          echo '{    "experimental": true }' | sudo tee -a /etc/docker/daemon.json
+          echo '{    "experimental": true }' | sudo tee /etc/docker/daemon.json
           sudo service docker restart
           docker version -f '{{.Server.Experimental}}'
     - name: Build guild-ops-base final image
