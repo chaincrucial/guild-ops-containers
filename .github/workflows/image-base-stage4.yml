@@ -14,7 +14,7 @@ jobs:
       run: |
           echo '{    "experimental": enabled }' | sudo tee -a /etc/docker/daemon.json
           sudo service docker restart
-          docker version -f '{{.Server.Experimental}
+          docker version -f '{{.Server.Experimental}}'
     - name: Build guild-ops-base final image
       run: |
         docker version
