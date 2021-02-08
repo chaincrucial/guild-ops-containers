@@ -12,7 +12,7 @@ jobs:
         docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
     - name: enable experimental features for squashing image
       run: |
-        sed 's/^{/{ "experimental": "enabled",' ~/.docker/config.json
+        sed 's/^{/{ "experimental": "enabled",/' ~/.docker/config.json
         cat ~/.docker/config.json
         sudo systemctl restart docker
         docker version
