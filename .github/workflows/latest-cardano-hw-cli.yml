@@ -1,7 +1,7 @@
 name: Get latest Cardano HW CLI release version
 on:
   schedule:
-    - cron:  '0 */8 * * *'
+    - cron:  '0 */24 * * *'
   workflow_dispatch:
 
 jobs:
