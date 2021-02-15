@@ -1,4 +1,4 @@
-name: Container Image CD cncli Stage
+name: Container Image cncli Stage
 
 on: workflow_dispatch
 
