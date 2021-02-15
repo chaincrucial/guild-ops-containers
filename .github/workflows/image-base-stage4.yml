@@ -1,4 +1,4 @@
-name: Container Image CD base Stage 4
+name: Container Image base Stage4
 
 on: workflow_dispatch
 
