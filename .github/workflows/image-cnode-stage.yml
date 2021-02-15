@@ -1,4 +1,4 @@
-name: Container Image CD cnode Stage
+name: Container Image cnode Stage
 
 on: workflow_dispatch
 
