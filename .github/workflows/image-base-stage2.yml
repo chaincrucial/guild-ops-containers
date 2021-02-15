@@ -1,4 +1,4 @@
-name: Container Image CD base Stage 2
+name: Container Image base Stage2
 
 on:
   push:
