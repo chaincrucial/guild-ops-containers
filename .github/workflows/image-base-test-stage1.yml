@@ -16,10 +16,10 @@ jobs:
         docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
     - name: Installing dependencies and build tools
       run: |
-        docker build . --file containers/guild-ops-base/test-stage1 --compress --tag chaincrucial/guild-ops-base-test:stage1
+        docker build . --file containers/guild-ops-base/test-stage1 --compress --tag chaincrucial/guild-ops-base:test-stage1
     - name: container push stage 1
       run: |
-        docker push chaincrucial/guild-ops-base-test:stage1
+        docker push chaincrucial/guild-ops-base:test-stage1
     - name: container trigger dispatch stage 2
       run: |
         curl -XPOST -u "${{ secrets.REPO_SCOPED_USER }}:${{ secrets.REPO_SCOPED_TOKEN }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/chaincrucial/guild-ops-containers/actions/workflows/image-base-test-stage2.yml/dispatches --data '{"ref": "master"}'
