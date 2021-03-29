@@ -9,16 +9,16 @@ ENV \
     PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH" \
     PATH=/root/.cabal/bin:/root/.ghcup/bin:/root/.local/bin:/root/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
 
-COPY --from=chaincrucial/guild-ops-base:stage3 /opt/cardano /opt/cardano
-COPY --from=chaincrucial/guild-ops-base:stage3 /root/tmp /root/tmp
-COPY --from=chaincrucial/guild-ops-base:stage3 /root/.cabal/bin/bech32 /root/.cabal/bin/
-COPY --from=chaincrucial/guild-ops-base:stage3 /root/.cabal/bin/cardano-address /root/.cabal/bin/
-COPY --from=chaincrucial/guild-ops-base:stage3 /root/.cabal/bin/cardano-cli /root/.cabal/bin/
-COPY --from=chaincrucial/guild-ops-base:stage3 /root/bin/cardano-hw-cli/cardano-hw-cli /root/.cabal/bin/
-COPY --from=chaincrucial/guild-ops-base:stage3 /root/.cabal/bin/cardano-node /root/.cabal/bin/
-COPY --from=chaincrucial/guild-ops-base:stage3 /root/.cabal/bin/cardano-ping /root/.cabal/bin/
-COPY --from=chaincrucial/guild-ops-base:stage3 /root/.cargo/bin/cncli /root/.cargo/bin/
-COPY --from=chaincrucial/guild-ops-base:stage3 /usr/local/lib /usr/local/lib
+COPY --from=chaincrucial/guild-ops-base-test:stage3 /opt/cardano /opt/cardano
+COPY --from=chaincrucial/guild-ops-base-test:stage3 /root/tmp /root/tmp
+COPY --from=chaincrucial/guild-ops-base-test:stage3 /root/.cabal/bin/bech32 /root/.cabal/bin/
+COPY --from=chaincrucial/guild-ops-base-test:stage3 /root/.cabal/bin/cardano-address /root/.cabal/bin/
+COPY --from=chaincrucial/guild-ops-base-test:stage3 /root/.cabal/bin/cardano-cli /root/.cabal/bin/
+COPY --from=chaincrucial/guild-ops-base-test:stage3 /root/bin/cardano-hw-cli/cardano-hw-cli /root/.cabal/bin/
+COPY --from=chaincrucial/guild-ops-base-test:stage3 /root/.cabal/bin/cardano-node /root/.cabal/bin/
+COPY --from=chaincrucial/guild-ops-base-test:stage3 /root/.cabal/bin/cardano-ping /root/.cabal/bin/
+COPY --from=chaincrucial/guild-ops-base-test:stage3 /root/.cargo/bin/cncli /root/.cargo/bin/
+COPY --from=chaincrucial/guild-ops-base-test:stage3 /usr/local/lib /usr/local/lib
 
 # HYDRA CFG 
 ADD https://hydra.iohk.io/build/3670619/download/1/mainnet-topology.json /opt/cardano/cnode/files/ 
