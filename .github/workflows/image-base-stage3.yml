@@ -1,0 +1,22 @@
+name: Image base Stage3
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: docker login
+      run: |
+        docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
+    - name: Install guild-ops and compile addon tools [ cncli, cardano-hw-cli ] tools
+      run: |
+        docker build . --file containers/guild-ops-base/stage3 --compress --tag chaincrucial/guild-ops-base:stage3
+    - name: docker push stage3
+      run: |
+        docker push chaincrucial/guild-ops-base:stage3
+    - name: docker dispatch stage 4
+      run: |
+        curl -XPOST -u "${{ secrets.REPO_SCOPED_USER }}:${{ secrets.REPO_SCOPED_TOKEN }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/chaincrucial/guild-ops-containers/actions/workflows/image-base-stage4.yml/dispatches --data '{"ref": "master"}'
