@@ -26,6 +26,6 @@ jobs:
           VERSION=$(cat ./containers/guild-ops-base/cardano-node-latest-tag.txt)
           git config --global user.name ${{ secrets.REPO_SCOPED_USER }}
           git config --global user.email ${{ secrets.REPO_SCOPED_EMAIL }}
-          git commit -am "New cardano-node release version ${VERSION}"
+          git commit -am "New cardano-node master tag ${VERSION}"
           git push
           curl -XPOST -u "${{ secrets.REPO_SCOPED_USER }}:${{ secrets.REPO_SCOPED_TOKEN }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/chaincrucial/guild-ops-containers/actions/workflows/image-base-test-stage2.yml/dispatches --data '{"ref": "master"}'
