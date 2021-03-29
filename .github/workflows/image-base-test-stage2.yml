@@ -1,4 +1,4 @@
-name: Container Image base Stage2
+name: Container Image base test Stage2
 
 on:
   push:
