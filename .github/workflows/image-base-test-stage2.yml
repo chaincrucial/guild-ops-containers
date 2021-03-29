@@ -3,7 +3,7 @@ name: Container Image base test Stage2
 on:
   push:
     paths:
-      - 'containers/guild-ops-base/guild-operators-latest-alpha.txt'
+      - 'containers/guild-ops-base/guild-operators-alpha-latest.txt'
   workflow_dispatch:
 
 jobs:
