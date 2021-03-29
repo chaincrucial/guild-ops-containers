@@ -1,4 +1,4 @@
-name: Container Image cncli test Stage
+name: Image cncli test Stage
 
 on: workflow_dispatch
 
