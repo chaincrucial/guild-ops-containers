@@ -1,4 +1,4 @@
-name: Get latest Node tag version
+name: Get latest Cardano Node tag
 on:
   schedule:
     - cron:  '0 */16 * * *'
