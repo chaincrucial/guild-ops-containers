@@ -1,4 +1,4 @@
-name: Get latest Guild release version
+name: Get latest Guild alpha commit
 on:
   schedule:
     - cron:  '0 */24 * * *'
