@@ -11,7 +11,7 @@ RUN /bin/bash -c "echo '** Installing packages' ; yum -y --allowerasing install 
 RUN . /root/.bashrc &&\
     mkdir -pv /root/tmp &&\
     cd /root/tmp &&\
-    curl -sS -o prereqs.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/prereqs.sh &&\
+    curl -sS -o prereqs.sh https://raw.githubusercontent.com/cardano-community/guild-operators/alpha/scripts/cnode-helper-scripts/prereqs.sh &&\
     chmod 755 prereqs.sh && export SUDO='N' ; export UPDATE_CHECK='N' ; ./prereqs.sh -l -b alpha &&\
     yum -y clean all &&\
     rm -rf /var/cache/yum
