@@ -1,4 +1,4 @@
-name: Container Image base test Stage3
+name: Image base test Stage3
 
 on: 
   workflow_dispatch:
