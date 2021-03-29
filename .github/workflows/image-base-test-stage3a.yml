@@ -1,0 +1,25 @@
+name: Image base test Stage3a
+
+on: 
+  push:
+    paths:
+      - 'containers/guild-ops-base/cncli-latest.txt'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: docker login
+      run: |
+        docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
+    - name: Updating cncli addon tool
+      run: |
+        docker build . --file containers/guild-ops-base/test-stage3a --compress --no-cache --tag chaincrucial/guild-ops-base:test-stage3
+    - name: docker push stage3
+      run: |
+        docker push chaincrucial/guild-ops-base:test-stage3
+    - name: docker dispatch stage 4
+      run: |
+        curl -XPOST -u "${{ secrets.REPO_SCOPED_USER }}:${{ secrets.REPO_SCOPED_TOKEN }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/chaincrucial/guild-ops-containers/actions/workflows/image-base-test-stage4.yml/dispatches --data '{"ref": "master"}'
