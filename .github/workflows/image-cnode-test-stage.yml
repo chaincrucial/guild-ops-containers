@@ -1,4 +1,4 @@
-name: Image cnode Stage
+name: Image cnode test Stage
 
 on: workflow_dispatch
 
