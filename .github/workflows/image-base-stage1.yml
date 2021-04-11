@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - 'containers/guild-ops-base/release-versions/cardano-node-latest.txt'
+      - 'containers/guild-ops-base/cardano-node-latest.txt'
 
 jobs:
   build:
