@@ -18,6 +18,7 @@ jobs:
         TIMESTAMP=$(date +%s)
         docker tag chaincrucial/guild-ops-base:stage4 chaincrucial/guild-ops-base:${TIMESTAMP}
         docker tag chaincrucial/guild-ops-base:stage4 chaincrucial/guild-ops-base:latest
+        docker push chaincrucial/guild-ops-base:stage4
         docker push chaincrucial/guild-ops-base:${TIMESTAMP}
         docker push chaincrucial/guild-ops-base:latest
     - name: docker dispatch cnode stage
