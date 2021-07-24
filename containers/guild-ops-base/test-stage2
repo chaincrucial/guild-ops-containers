@@ -9,7 +9,7 @@ RUN . /root/.bashrc &&\
     cd cardano-node &&\
     git fetch --tags --all &&\
     git pull &&\
-    curl -o cardano-node-latest-tag.txt https://raw.githubusercontent.com/chaincrucial/guild-ops-containers/alpha/containers/guild-ops-base/cardano-node-latest-tag.txt &&\
+    curl -o cardano-node-latest-tag.txt https://raw.githubusercontent.com/chaincrucial/guild-ops-containers/containers/guild-ops-base/cardano-node-latest-tag.txt &&\
     CNODE_VERSION=$(cat cardano-node-latest-tag.txt) &&\
     git checkout ${CNODE_VERSION} &&\
     git status &&\
