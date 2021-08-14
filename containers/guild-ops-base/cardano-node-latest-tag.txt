@@ -1,1 +1,1 @@
-alonzo-purple-1.0.1-30-gf64c05604
+node-qa-1.0
