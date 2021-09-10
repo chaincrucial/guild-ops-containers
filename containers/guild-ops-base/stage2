@@ -6,6 +6,7 @@ RUN . /root/.bashrc &&\
     cd /root/git &&\
     rm -rf ./cardano-node ;\
     git clone https://github.com/input-output-hk/cardano-node &&\
+    pwd ; ls -l ;\
     curl -o cardano-node-latest.txt https://raw.githubusercontent.com/chaincrucial/guild-ops-containers/master/containers/guild-ops-base/cardano-node-latest.txt &&\
     CNODE_VERSION=$(cat cardano-node-latest.txt) &&\
     echo "Checking out Cardano node: ${CNODE_VERSION}" &&\
@@ -15,7 +16,8 @@ RUN . /root/.bashrc &&\
     git checkout ${CNODE_VERSION} &&\
     git status &&\
     wget https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/cabal.project.local
-RUN . /root/.bashrc &&\
+RUN pwd ; ls -l ;\
+    . /root/.bashrc &&\
     cd cardano-node &&\
     /opt/cardano/cnode/scripts/cabal-build-all.sh -l
 RUN . /root/.bashrc ; /root/.cabal/bin/cardano-cli version ; /root/.cabal/bin/cardano-node version
