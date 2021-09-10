@@ -8,7 +8,7 @@ RUN . /root/.bashrc &&\
     git clone https://github.com/input-output-hk/cardano-node &&\
     curl -o cardano-node-latest.txt https://raw.githubusercontent.com/chaincrucial/guild-ops-containers/master/containers/guild-ops-base/cardano-node-latest.txt &&\
     CNODE_VERSION=$(cat cardano-node-latest.txt) &&\
-    echo "Checking out Cardano node: ${CNODE_VERSION}" \
+    echo "Checking out Cardano node: ${CNODE_VERSION}" &&\
     cd cardano-node &&\
     git fetch --tags --all &&\
     git pull &&\
