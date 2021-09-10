@@ -18,6 +18,6 @@ RUN . /root/.bashrc &&\
     wget https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/cabal.project.local
 RUN pwd ; ls -l ;\
     . /root/.bashrc &&\
-    cd cardano-node &&\
+    cd /root/git/cardano-node &&\
     /opt/cardano/cnode/scripts/cabal-build-all.sh -l
 RUN . /root/.bashrc ; /root/.cabal/bin/cardano-cli version ; /root/.cabal/bin/cardano-node version
