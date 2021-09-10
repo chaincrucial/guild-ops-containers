@@ -15,7 +15,6 @@ RUN . /root/.bashrc &&\
     git checkout ${CNODE_VERSION} &&\
     git status &&\
     wget https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/cabal.project.local &&\
-    cp cabal.project.local cabal.project &&\
-    cat cabal.project
-RUN /opt/cardano/cnode/scripts/cabal-build-all.sh -l
+RUN cd cardano-node &&\
+    /opt/cardano/cnode/scripts/cabal-build-all.sh -l
 RUN . /root/.bashrc ; /root/.cabal/bin/cardano-cli version ; /root/.cabal/bin/cardano-node version
