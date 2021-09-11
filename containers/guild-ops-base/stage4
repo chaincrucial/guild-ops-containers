@@ -15,7 +15,7 @@ COPY --from=chaincrucial/guild-ops-base:stage3 /root/tmp /root/tmp
 COPY --from=chaincrucial/guild-ops-base:stage3 /root/.cabal/bin/* /root/.cabal/bin/
 COPY --from=chaincrucial/guild-ops-base:stage3 /root/.cargo/bin/* /root/.cargo/bin/
 COPY --from=chaincrucial/guild-ops-base:stage3 /usr/local/lib /usr/local/lib
-COPY --from=chaincrucial/guild-ops-base:stage3 /root/bin/cardano-hw-cli /root/.cabal/bin/
+#COPY --from=chaincrucial/guild-ops-base:stage3 /root/bin/cardano-hw-cli/cardano-hw-cli /root/.cabal/bin/
 
 # HYDRA CFG 
 ADD https://hydra.iohk.io/build/3670619/download/1/mainnet-topology.json /opt/cardano/cnode/files/ 
