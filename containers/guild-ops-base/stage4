@@ -18,14 +18,17 @@ COPY --from=chaincrucial/guild-ops-base:stage3 /root/.cargo/bin/* /root/.cargo/b
 COPY --from=chaincrucial/guild-ops-base:stage3 /root/bin/cardano-hw-cli/cardano-hw-cli /root/.cabal/bin/
 
 # HYDRA CFG 
-ADD https://hydra.iohk.io/build/3670619/download/1/mainnet-topology.json /opt/cardano/cnode/files/ 
-ADD https://hydra.iohk.io/build/3670619/download/1/mainnet-shelley-genesis.json /opt/cardano/cnode/files/ 
-ADD https://hydra.iohk.io/build/3670619/download/1/mainnet-byron-genesis.json /opt/cardano/cnode/files/ 
+ADD https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/mainnet-topology.json /opt/cardano/cnode/files/ 
+ADD https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/mainnet-alonzo-genesis.json /opt/cardano/cnode/files
+ADD https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/mainnet-shelley-genesis.json /opt/cardano/cnode/files/ 
+ADD https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/mainnet-byron-genesis.json /opt/cardano/cnode/files/ 
 ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/config-mainnet.json /opt/cardano/cnode/files/ 
+
  
 # HYDRA TESTNET CFG 
-ADD https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/testnet-byron-genesis.json /opt/cardano/cnode/files/ 
-ADD https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/testnet-shelley-genesis.json /opt/cardano/cnode/files/ 
+ADD https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/testnet-byron-genesis.json /opt/cardano/cnode/files/
+ADD https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/testnet-shelley-genesis.json /opt/cardano/cnode/files/
+ADD https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/testnet-alonzo-genesis.json /opt/cardano/cnode/files/
 ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/config-testnet.json /opt/cardano/cnode/files/
  
 # HYDRA STAGING TESTNET CFG
