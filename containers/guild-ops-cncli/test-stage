@@ -1,7 +1,7 @@
 FROM chaincrucial/guild-ops-base:test-stage4
 
 # ENTRY SCRIPT
-ADD https://raw.githubusercontent.com/TrevorBenson/cardano-node/entrypoint-leverage-cnode.sh/cncli-entrypoint.sh /opt/cardano/cnode/scripts/docker-entrypoint.sh
+ADD https://raw.githubusercontent.com/TrevorBenson/cardano-node/entrypoint-leverage-cnode.sh/cncli-entrypoint.sh /docker-entrypoint.sh
 
-ENTRYPOINT ["/opt/cardano/cnode/scripts/docker-entrypoint.sh"]
-RUN ["chmod", "+x", "/opt/cardano/cnode/scripts/docker-entrypoint.sh"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
+RUN ["chmod", "+x", "/docker-entrypoint.sh"]

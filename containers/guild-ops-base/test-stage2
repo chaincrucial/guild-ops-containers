@@ -18,5 +18,5 @@ RUN . /root/.bashrc &&\
 RUN pwd ; ls -l ;\
     . /root/.bashrc &&\
     cd /root/git/cardano-node &&\
-    /opt/cardano/cnode/scripts/cabal-build-all.sh -l
-RUN . /root/.bashrc ; /root/.cabal/bin/cardano-cli version ; /root/.cabal/bin/cardano-node version
+    /opt/cardano/cnode/scripts/cabal-build-all.sh -l &&\
+    /root/.cabal/bin/cardano-cli version ; /root/.cabal/bin/cardano-node version

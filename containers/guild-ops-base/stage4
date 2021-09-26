@@ -14,17 +14,15 @@ COPY --from=chaincrucial/guild-ops-base:stage3 /opt/cardano /opt/cardano
 COPY --from=chaincrucial/guild-ops-base:stage3 /root/tmp /root/tmp
 COPY --from=chaincrucial/guild-ops-base:stage3 /root/.cabal/bin/* /root/.cabal/bin/
 COPY --from=chaincrucial/guild-ops-base:stage3 /root/.cargo/bin/* /root/.cargo/bin/
-#COPY --from=chaincrucial/guild-ops-base:stage3 /usr/local/lib /usr/local/lib
 COPY --from=chaincrucial/guild-ops-base:stage3 /root/bin/cardano-hw-cli/cardano-hw-cli /root/.cabal/bin/
 
 # HYDRA CFG
 ADD https://hydra.iohk.io/build/7578887/download/1/mainnet-topology.json /opt/cardano/cnode/files/ 
+ADD https://hydra.iohk.io/build/7578887/download/1/mainnet-byron-genesis.json /opt/cardano/cnode/files/
+ADD https://hydra.iohk.io/build/7578887/download/1/mainnet-shelley-genesis.json /opt/cardano/cnode/files/
 ADD https://hydra.iohk.io/build/7578887/download/1/mainnet-alonzo-genesis.json /opt/cardano/cnode/files/
-ADD https://hydra.iohk.io/build/7578887/download/1/mainnet-shelley-genesis.json /opt/cardano/cnode/files/ 
-ADD https://hydra.iohk.io/build/7578887/download/1/mainnet-byron-genesis.json /opt/cardano/cnode/files/ 
-ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/config-mainnet.json /opt/cardano/cnode/files/ 
+ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/config-mainnet.json /opt/cardano/cnode/files/
 
- 
 # HYDRA TESTNET CFG 
 ADD https://hydra.iohk.io/build/7578887/download/1/testnet-byron-genesis.json /opt/cardano/cnode/files/
 ADD https://hydra.iohk.io/build/7578887/download/1/testnet-shelley-genesis.json /opt/cardano/cnode/files/
