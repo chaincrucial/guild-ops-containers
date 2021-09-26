@@ -13,7 +13,7 @@ jobs:
           token: ${{ secrets.REPO_SCOPED_TOKEN }}
       - name: Fetch node tag version
         run: |
-          git clone https://github.com/input-output-hk/cardano-node.git ./cardano-node/ ; cd ./cardano-node/ ; git describe --tags > ../containers/guild-ops-base/cardano-node-latest-tag.txt ; cd ../ ; rm -rf ./cardano-node/
+          git clone https://github.com/input-output-hk/cardano-node.git ./cardano-node/ ; cd ./cardano-node/ ; git describe --tags --abbrev=0 > ../containers/guild-ops-base/cardano-node-latest-tag.txt ; cd ../ ; rm -rf ./cardano-node/
       - name: Assigns tag version
         run: |
           VERSION=$(cat ./containers/guild-ops-base/cardano-node-latest-tag.txt)
