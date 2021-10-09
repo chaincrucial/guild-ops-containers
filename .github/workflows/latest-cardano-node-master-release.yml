@@ -17,7 +17,7 @@ jobs:
           token: ${{ secrets.REPO_SCOPED_TOKEN }}
       - name: Update node release version
         run: |
-          VERSION=${{ steps.nodeversion.outputs.release }} ; echo ${VERSION} > containers/guild-ops-base/cardano-node-latest.txt
+          VERSION=${{ steps.nodeversion.outputs.release }} ; echo ${VERSION} | tee containers/guild-ops-base/cardano-node-latest.txt
       - name: Assigns release version
         run: |
           VERSION=$(cat ./containers/guild-ops-base/cardano-node-latest.txt)
