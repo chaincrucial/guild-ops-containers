@@ -10,13 +10,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
+          fetch-depth: 0
           token: ${{ secrets.REPO_SCOPED_TOKEN }}
-      - name: Fetch node tag version
-        run: |
-          git clone https://github.com/input-output-hk/cardano-node.git ./cardano-node/ ; cd ./cardano-node/ ; git describe --tags --abbrev=0 > ../containers/guild-ops-base/cardano-node-latest-tag.txt ; cd ../ ; rm -rf ./cardano-node/
+      - name: 'Fetch node latesttag version'
+        id: latesttag
+        uses: "WyriHaximus/github-action-get-previous-tag@v1"
       - name: Assigns tag version
         run: |
-          VERSION=$(cat ./containers/guild-ops-base/cardano-node-latest-tag.txt)
+          VERSION=${{ steps.latesttag.outputs.tag }} ; echo ${VERSION} | tee ./containers/guild-ops-base/cardano-node-latest-tag.txt
       - name: Check for modified files
         id: git-check
         run: echo ::set-output name=modified::$([ -z "`git status --porcelain`" ] && echo "false" || echo "true")
