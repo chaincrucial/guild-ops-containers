@@ -8,15 +8,16 @@ jobs:
   get-version:
     runs-on: ubuntu-latest
     steps:
+      - id: cncliversion
+        uses: pozetroninc/github-action-get-latest-release@v0.5.0
+        with:
+          repository: AndrewWestberg/cncli
       - uses: actions/checkout@v2
         with:
           token: ${{ secrets.REPO_SCOPED_TOKEN }}
-      - name: Fetch cncli release version
+      - name: Write cncli release version
         run: |
-          curl -sL https://github.com/AndrewWestberg/cncli/releases/latest | grep "tag" | head -1 | sed -n -e 's/^.*tag\///p' | cut -d "\"" -f 1 > containers/guild-ops-base/cncli-latest.txt
-      - name: Assigns release version
-        run: |
-          VERSION=$(cat ./containers/guild-ops-base/cncli-latest.txt)
+          VERSION=${{ steps.cncliversion.outputs.release }} ; echo ${VERSION} > containers/guild-ops-base/cncli-latest.txt
       - name: Check for modified files
         id: git-check
         run: echo ::set-output name=modified::$([ -z "`git status --porcelain`" ] && echo "false" || echo "true")
