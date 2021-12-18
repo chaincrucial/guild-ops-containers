@@ -29,7 +29,7 @@ if ! [[ -z "${NETWORK}" ]] ; then
   ln -sf ${CNODE_HOME}/files/${NETWORK}-shelley-genesis.json ${CNODE_HOME}/files/shelley-genesis.json &&/
   ln -sf ${CNODE_HOME}/files/${NETWORK}-alonzo-genesis.json ${CNODE_HOME}/files/alonzo-genesis.json &&/
   jq '.hasEKG = ["0.0.0.0", 12788] | .hasPrometheus = ["0.0.0.0", 12798] | .TraceMempool = false' ${CNODE_HOME}/files/config-${NETWORK}.json > ${CNODE_HOME}/files/config.json
-  customize() &&/
+  customize() &&\
   exec ${CNODE_HOME}/scripts/cnode.sh
 else
   echo "Please set a NETWORK environment variable to one of: [mainnet|testnet|staging|launchpad]"
