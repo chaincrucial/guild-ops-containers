@@ -1,7 +1,12 @@
 name: Image cnode Stage
 
-on: workflow_dispatch
-
+on: 
+  workflow_dispatch:
+  push:
+    paths:
+      - 'containers/guild-ops-cnode/entrypoint.sh'
+      - 'containers/guild-ops-cnode/healthcheck.sh'
+      - 'containers/guild-ops-cnode/stage'
 jobs:
   build:
     runs-on: ubuntu-latest
