@@ -17,7 +17,7 @@ jobs:
     - name: Updating cncli addon tool
       run: |
         docker build . --file containers/guild-ops-base/stage3a.containerfile --compress --no-cache --tag chaincrucial/guild-ops-base:stage3
-    - name: docker push stage3.containerfile
+    - name: docker push stage3
       run: |
         docker push chaincrucial/guild-ops-base:stage3
     - name: docker dispatch stage 4

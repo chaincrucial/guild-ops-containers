@@ -14,7 +14,7 @@ jobs:
     - name: Install guild-ops and compile addon tools [ cncli, cardano-hw-cli ] tools
       run: |
         docker build . --file containers/guild-ops-base/stage3.containerfile --compress --tag chaincrucial/guild-ops-base:stage3
-    - name: docker push stage3.containerfile
+    - name: docker push stage3
       run: |
         docker push chaincrucial/guild-ops-base:stage3
     - name: docker dispatch stage 4
