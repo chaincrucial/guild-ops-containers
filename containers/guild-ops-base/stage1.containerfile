@@ -5,6 +5,4 @@ ENV PATH=/root/.cabal/bin:/root/.ghcup/bin:/root/.local/bin:/root/bin:/usr/local
 RUN /bin/bash -c "mkdir -pv /root/tmp /root/.{cabal,ghcup}/bin &&\
     cd /root/tmp &&\
     curl -sS -o prereqs.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/prereqs.sh &&\
-    chmod 755 prereqs.sh && export SUDO='N' ; export UPDATE_CHECK='N' ; ./prereqs.sh -l &&\
-    yum -y clean all &&\
-    rm -rf /var/cache/yum"
+    chmod 755 prereqs.sh && export SUDO='N' ; export UPDATE_CHECK='N' ; ./prereqs.sh -l"
