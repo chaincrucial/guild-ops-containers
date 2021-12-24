@@ -16,7 +16,7 @@ jobs:
         docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
     - name: Compiling new node software
       run: |
-        docker build . --file containers/guild-ops-base/stage2 --compress --tag chaincrucial/guild-ops-base:stage2
+        docker build . --file containers/guild-ops-base/stage2.containerfile --compress --tag chaincrucial/guild-ops-base:stage2
     - name: docker push stage 2
       run: |
         docker push chaincrucial/guild-ops-base:stage2

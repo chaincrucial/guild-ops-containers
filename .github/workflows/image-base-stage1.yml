@@ -16,7 +16,7 @@ jobs:
         docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
     - name: Installing dependencies and build tools
       run: |
-        docker build . --file containers/guild-ops-base/stage1 --compress --tag chaincrucial/guild-ops-base:stage1
+        docker build . --file containers/guild-ops-base/stage1.containerfile --compress --tag chaincrucial/guild-ops-base:stage1
     - name: container push stage 1
       run: |
         docker push chaincrucial/guild-ops-base:stage1
