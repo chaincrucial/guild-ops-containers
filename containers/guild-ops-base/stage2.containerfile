@@ -15,7 +15,7 @@ RUN . /root/.bashrc &&\
     git pull &&\
     git checkout ${CNODE_VERSION} &&\
     git status &&\
-    wget https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/cabal.project.local &&\
+    curl -o cabal.project.local https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/cabal.project.local &&\
     /opt/cardano/cnode/scripts/cabal-build-all.sh -l &&\
     cabal install cardano-ping &&\
     /root/.cabal/bin/cardano-cli version ; /root/.cabal/bin/cardano-node version
