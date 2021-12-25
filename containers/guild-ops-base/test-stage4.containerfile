@@ -68,5 +68,5 @@ RUN /bin/bash -c "dnf -y install epel-release &&\
     sed -i 's/^#EKG_TIMEOUT=/EKG_TIMEOUT=/' /opt/cardano/cnode/scripts/env &&\
     sed -i 's/^#CURL_TIMEOUT=/CURL_TIMEOUT=/' /opt/cardano/cnode/scripts/env &&\
     sed -i 's/^#BLOCKLOG_DIR=/BLOCKLOG_DIR=/' /opt/cardano/cnode/scripts/env &&\
-    sed -i 's%^#BLOCKLOG_TZ="UTC"%BLOCKLOG_TZ="America/Los_Angeles"%' /opt/cardano/cnode/scripts/env &&\
+    sed -i 's%^#BLOCKLOG_TZ=\"UTC\"%BLOCKLOG_TZ=\"America/Los_Angeles\"%' /opt/cardano/cnode/scripts/env &&\
     sed -i 's/^ENABLE_CHATTR=true/ENABLE_CHATTR=false/' /opt/cardano/cnode/scripts/cntools.config"
