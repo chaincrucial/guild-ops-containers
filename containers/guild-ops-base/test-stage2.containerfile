@@ -14,7 +14,6 @@ RUN curl -o cardano-node-latest.txt https://raw.githubusercontent.com/chaincruci
     git checkout "${CNODE_VERSION}" &&\
     git status &&\
     curl -o cabal.project.local https://raw.githubusercontent.com/cardano-community/guild-operators/alpha/files/cabal.project.local &&\
-    . /root/.bashrc &&\
     /opt/cardano/cnode/scripts/cabal-build-all.sh -l &&\
     cabal install cardano-ping &&\
     /root/.cabal/bin/cardano-cli version ; /root/.cabal/bin/cardano-node version
