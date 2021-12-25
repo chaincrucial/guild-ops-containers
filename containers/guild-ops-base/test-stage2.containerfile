@@ -12,9 +12,9 @@ RUN . /root/.bashrc &&\
     cd cardano-node &&\
     git fetch --tags --all &&\
     git pull &&\
-    git checkout ${CNODE_VERSION} &&\
+    git checkout "${CNODE_VERSION}" &&\
     git status &&\
-    wget https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/cabal.project.local
+    curl -o cabal.project.local https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/cabal.project.local
 RUN pwd ; ls -l ;\
     . /root/.bashrc &&\
     cd /root/git/cardano-node &&\

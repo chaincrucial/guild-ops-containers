@@ -13,7 +13,7 @@ RUN . /root/.bashrc &&\
     cd cardano-node &&\
     git fetch --tags --all &&\
     git pull &&\
-    git checkout ${CNODE_VERSION} &&\
+    git checkout "${CNODE_VERSION}" &&\
     git status &&\
     curl -o cabal.project.local https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/cabal.project.local &&\
     /opt/cardano/cnode/scripts/cabal-build-all.sh -l &&\
