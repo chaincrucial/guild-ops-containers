@@ -17,6 +17,6 @@ jobs:
       run: |
         ver_cncli=$(curl -s https://raw.githubusercontent.com/chaincrucial/guild-ops-containers/master/containers/guild-ops-base/cncli-latest.txt)
         docker tag chaincrucial/guild-ops-cncli:stage chaincrucial/guild-ops-cncli:latest
-        docker tag chaincrucial/guild-ops-cncli:stage chaincrucial/guild-ops-cncli:${ver_cncli}
+        docker tag chaincrucial/guild-ops-cncli:stage chaincrucial/guild-ops-cncli:"${ver_cncli}"
         docker push chaincrucial/guild-ops-cncli:latest
-        docker push chaincrucial/guild-ops-cncli:${ver_cncli}
+        docker push chaincrucial/guild-ops-cncli:"${ver_cncli}"

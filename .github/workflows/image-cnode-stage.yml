@@ -23,6 +23,6 @@ jobs:
         ver_cnode=$(curl -s https://raw.githubusercontent.com/chaincrucial/guild-ops-containers/master/containers/guild-ops-base/cardano-node-latest.txt)
         ver_guild=$(curl -s https://raw.githubusercontent.com/chaincrucial/guild-ops-containers/master/containers/guild-ops-base/guild-operators-latest.txt)
         docker tag chaincrucial/guild-ops-cnode:stage chaincrucial/guild-ops-cnode:latest
-        docker tag chaincrucial/guild-ops-cnode:stage chaincrucial/guild-ops-cnode:${ver_cnode}_${ver_guild::8}
+        docker tag chaincrucial/guild-ops-cnode:stage chaincrucial/guild-ops-cnode:"${ver_cnode}"_"${ver_guild::8}"
         docker push chaincrucial/guild-ops-cnode:latest
-        docker push chaincrucial/guild-ops-cnode:${ver_cnode}_${ver_guild::8}
+        docker push chaincrucial/guild-ops-cnode:"${ver_cnode}"_"${ver_guild::8}"
