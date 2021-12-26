@@ -5,7 +5,7 @@ on:
   push:
     paths:
       - 'scripts/cnode-helper-scripts/prereqsh.sh'
-      - 'containers/guild-ops-base/ubuntu20-stage1.containerfile'
+      - 'containers/pre-merge/ubuntu20-stage1.containerfile'
       - '.github/workflows/premerge-ubuntu20-stage1.yml'
   pull_request:
     branches: [ development ]

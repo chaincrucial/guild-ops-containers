@@ -1,11 +1,11 @@
-name: Pre-merge Ubuntu20 Stage1
+name: Pre-merge DebianSlim Stage1
 
 on:
   workflow_dispatch:
   push:
     paths:
       - 'scripts/cnode-helper-scripts/prereqsh.sh'
-      - 'containers/guild-ops-base/debianslim-stage1.containerfile'
+      - 'containers/pre-merge/debianslim-stage1.containerfile'
       - '.github/workflows/premerge-debianslim-stage1.yml'
   pull_request:
     branches: [ development ]
@@ -20,4 +20,4 @@ jobs:
         docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
     - name: Installing dependencies and build tools
       run: |
-        docker build . --file containers/pre-merge/ubuntu20-stage1.containerfile --compress --tag chaincrucial/pre-merge:ubuntu20_stage1
+        docker build . --file containers/pre-merge/debianslim-stage1.containerfile --compress --tag chaincrucial/pre-merge:debianslim_stage1

@@ -1,12 +1,12 @@
-name: Pre-merge CentOS Stage2
+name: Pre-merge CentOS8 Stage2
 
 on:
   workflow_dispatch:
   push:
     paths:
       - 'scripts/cnode-helper-scripts/cabal-build-all.sh'
-      - 'containers/pre-merge/centos8-stage1_2.containerfile'
-      - '.github/workflows/premerge-centos8-stage1_2.yml'
+      - 'containers/pre-merge/centos8-stage2.containerfile'
+      - '.github/workflows/premerge-centos8-stage2.yml'
   pull_request:
     branches: [ development ]
 
@@ -20,4 +20,4 @@ jobs:
         docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
     - name: Compiling new node software
       run: |
-        docker build . --file containers/guild-ops-base/stage2.containerfile --compress --tag chaincrucial/guild-ops-base:stage2
+        docker build . --file containers/pre-merge/centos8-stage2.containerfile --compress --tag chaincrucial/pre-merge:centos8_stage2

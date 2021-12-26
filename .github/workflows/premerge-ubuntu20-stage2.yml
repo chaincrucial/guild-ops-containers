@@ -5,7 +5,7 @@ on:
   push:
     paths:
       - 'scripts/cnode-helper-scripts/cabal-build-all.sh'
-      - 'containers/guild-ops-base/ubuntu20-stage1_2.containerfile'
+      - 'containers/pre-merge/ubuntu20-stage2.containerfile'
       - '.github/workflows/premerge-ubuntu20-stage2.yml'
   pull_request:
     branches: [ development ]

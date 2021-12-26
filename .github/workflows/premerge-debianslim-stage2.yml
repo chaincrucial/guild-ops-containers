@@ -1,12 +1,12 @@
-name: Pre-merge UBI8 Stage2
+name: Pre-merge DebianSlim Stage2
 
 on:
   workflow_dispatch:
   push:
     paths:
       - 'scripts/cnode-helper-scripts/cabal-build-all.sh'
-      - 'containers/pre-merge/ubi8-stage2.containerfile'
-      - '.github/workflows/premerge-ubi8-stage2.yml'
+      - 'containers/pre-merge/debianslim-stage2.containerfile'
+      - '.github/workflows/premerge-debianslim-stage2.yml'
   pull_request:
     branches: [ development ]
 
@@ -18,6 +18,6 @@ jobs:
     - name: container login
       run: |
         docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
-    - name: Installing dependencies and build tools
+    - name: Compiling new node software
       run: |
-        docker build . --file containers/pre-merge/ubi8-stage2.containerfile --compress --tag chaincrucial/pre-merge:ubi8_stage2
+        docker build . --file containers/pre-merge/debianslim-stage2.containerfile --compress --tag chaincrucial/pre-merge:debianslim_stage2
