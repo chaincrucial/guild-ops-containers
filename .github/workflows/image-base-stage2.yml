@@ -4,6 +4,9 @@ on:
   push:
     paths:
       - 'containers/guild-ops-base/guild-operators-latest.txt'
+      - '.github/workflows/image-base-stage2.yml'
+      - 'containers/guild-ops-base/stage2.containerfile'
+
   workflow_dispatch:
 
 jobs:

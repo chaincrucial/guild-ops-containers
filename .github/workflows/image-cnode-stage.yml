@@ -7,6 +7,8 @@ on:
       - 'containers/guild-ops-cnode/entrypoint.sh'
       - 'containers/guild-ops-cnode/healthcheck.sh'
       - 'containers/guild-ops-cnode/stage.containerfile'
+      - '.github/workflows/image-cnode-stage.yml'
+
 jobs:
   build:
     runs-on: ubuntu-latest

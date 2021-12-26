@@ -1,6 +1,11 @@
 name: Image base test Stage3
 
 on: 
+  push:
+    paths:
+      - '.github/workflows/image-base-test-stage3.yml'
+      - 'containers/guild-ops-base/test-stage3.containerfile'
+
   workflow_dispatch:
 
 jobs:

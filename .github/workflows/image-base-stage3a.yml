@@ -4,6 +4,9 @@ on:
   push:
     paths:
       - 'containers/guild-ops-base/cncli-latest.txt'
+      - '.github/workflows/image-base-stage3a.yml'
+      - 'containers/guild-ops-base/stage3a.containerfile'
+
   workflow_dispatch:
 
 jobs:

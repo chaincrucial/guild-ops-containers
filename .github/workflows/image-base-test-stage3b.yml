@@ -4,6 +4,9 @@ on:
   push:
     paths:
       - 'containers/guild-ops-base/cardano-hw-cli-latest.txt'
+      - '.github/workflows/image-base-test-stage3b.yml'
+      - 'containers/guild-ops-base/test-stage3b.containerfile'
+
   workflow_dispatch:
 
 jobs:

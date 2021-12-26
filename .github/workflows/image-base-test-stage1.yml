@@ -5,6 +5,8 @@ on:
   push:
     paths:
       - 'containers/guild-ops-base/cardano-node-latest-tag.txt'
+      - '.github/workflows/image-base-test-stage1.yml'
+      - 'containers/guild-ops-base/test-stage1.containerfile'
 
 jobs:
   build:

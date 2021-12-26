@@ -1,6 +1,11 @@
 name: Image base Stage3
 
-on: 
+on:
+  push:
+    paths:
+      - '.github/workflows/image-base-stage3.yml'
+      - 'containers/guild-ops-base/stage3.containerfile'
+
   workflow_dispatch:
 
 jobs:
