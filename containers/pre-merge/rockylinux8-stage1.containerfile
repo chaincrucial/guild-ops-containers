@@ -1,4 +1,4 @@
-FROM rockylinux/rockylinux
+FROM rockylinux/rockylinux:8
 
 ENV \
 LANG=C.UTF-8 \
