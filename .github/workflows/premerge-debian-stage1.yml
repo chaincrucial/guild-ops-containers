@@ -6,7 +6,7 @@ on:
     paths:
       - 'scripts/cnode-helper-scripts/prereqsh.sh'
       - 'containers/pre-merge/debian-stage1.containerfile'
-      - '.github/workflows/premerge-debianslim-stage1.yml'
+      - '.github/workflows/premerge-debian-stage1.yml'
   pull_request:
     branches: [ development ]
 

@@ -6,7 +6,7 @@ on:
     paths:
       - 'scripts/cnode-helper-scripts/cabal-build-all.sh'
       - 'containers/pre-merge/debian-stage2.containerfile'
-      - '.github/workflows/premerge-debianslim-stage2.yml'
+      - '.github/workflows/premerge-debian-stage2.yml'
   pull_request:
     branches: [ development ]
 
