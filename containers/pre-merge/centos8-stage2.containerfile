@@ -9,7 +9,6 @@ WORKDIR /
 
 RUN dnf -y install epel-release &&\
     mkdir -pv /root/.{cabal,ghcup}/bin &&\
-    cd /root/tmp &&\
     curl -sS -o prereqs.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/prereqs.sh &&\
     chmod 755 prereqs.sh &&\
     export SUDO='N' &&\
@@ -18,7 +17,7 @@ RUN dnf -y install epel-release &&\
 
 RUN curl -o cardano-node-latest.txt https://raw.githubusercontent.com/chaincrucial/guild-ops-containers/master/containers/guild-ops-base/cardano-node-latest.txt &&\
     CNODE_VERSION=$(cat cardano-node-latest.txt) &&\
-    echo "Checking out Cardano node: ${CNODE_VERSION}" \
+    echo "Checking out Cardano node: ${CNODE_VERSION}" &&\
     git fetch --tags --all &&\
     git pull &&\
     git checkout "${CNODE_VERSION}" &&\

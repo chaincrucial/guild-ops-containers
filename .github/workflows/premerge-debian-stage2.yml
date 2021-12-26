@@ -1,4 +1,4 @@
-name: Pre-merge DebianSlim Stage2
+name: Pre-merge Debian Stage2
 
 on:
   workflow_dispatch:
@@ -20,4 +20,4 @@ jobs:
         docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
     - name: Compiling new node software
       run: |
-        docker build . --file containers/pre-merge/debianslim-stage2.containerfile --compress --tag chaincrucial/pre-merge:debianslim_stage2
+        docker build . --file containers/pre-merge/debian-stage2.containerfile --compress --tag chaincrucial/pre-merge:debian_stage2

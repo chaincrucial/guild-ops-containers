@@ -17,7 +17,7 @@ RUN set -x && apt-update &&\
     ./prereqs.sh -c -w
 RUN curl -o cardano-node-latest.txt https://raw.githubusercontent.com/chaincrucial/guild-ops-containers/master/containers/guild-ops-base/cardano-node-latest.txt &&\
     CNODE_VERSION=$(cat cardano-node-latest.txt) &&\
-    echo "Checking out Cardano node: ${CNODE_VERSION}" \
+    echo "Checking out Cardano node: ${CNODE_VERSION}" &&\
     git fetch --tags --all &&\
     git pull &&\
     git checkout "${CNODE_VERSION}" &&\

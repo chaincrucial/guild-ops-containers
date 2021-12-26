@@ -1,4 +1,4 @@
-name: Pre-merge DebianSlim Stage1
+name: Pre-merge Debian Stage1
 
 on:
   workflow_dispatch:
@@ -20,4 +20,4 @@ jobs:
         docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
     - name: Installing dependencies and build tools
       run: |
-        docker build . --file containers/pre-merge/debianslim-stage1.containerfile --compress --tag chaincrucial/pre-merge:debianslim_stage1
+        docker build . --file containers/pre-merge/debian-stage1.containerfile --compress --tag chaincrucial/pre-merge:debian_stage1
