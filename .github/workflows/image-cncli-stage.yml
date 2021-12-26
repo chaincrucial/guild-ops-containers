@@ -1,11 +1,6 @@
 name: Image cncli Stage
 
 on:
-  push:
-    paths:
-      - '.github/workflows/image-cncli-stage.yml'
-      - 'containers/guild-ops-cncli/stage.containerfile'
-
   workflow_dispatch:
 
 jobs:

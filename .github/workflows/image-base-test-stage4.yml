@@ -1,11 +1,6 @@
 name: Image base test Stage4
 
 on:
-  push:
-    paths:
-      - '.github/workflows/image-base-test-stage4.yml'
-      - 'containers/guild-ops-base/test-stage4.containerfile'
-
   workflow_dispatch:
 
 jobs:

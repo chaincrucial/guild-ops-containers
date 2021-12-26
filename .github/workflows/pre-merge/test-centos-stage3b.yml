@@ -1,6 +1,12 @@
-name: Image base Stage3
+name: Pre-merge CentOS Stage3b
 
 on:
+  push:
+    paths:
+      - '.github/workflows/pre-merge/test-centos-stage3b.yml'
+      - '.github/workflows/image-base-stage3b.yml'
+      - 'containers/guild-ops-base/stage3b.containerfile'
+
   workflow_dispatch:
 
 jobs:
@@ -11,9 +17,9 @@ jobs:
     - name: docker login
       run: |
         docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
-    - name: Install guild-ops and compile addon tools [ cncli, cardano-hw-cli ] tools
+    - name: Updating cardano-hw-cli addon tool
       run: |
-        docker build . --file containers/guild-ops-base/stage3.containerfile --compress --tag chaincrucial/guild-ops-base:stage3
+        docker build . --file containers/guild-ops-base/stage3b.containerfile --compress --no-cache --tag chaincrucial/guild-ops-base:stage3
     - name: docker push stage3
       run: |
         docker push chaincrucial/guild-ops-base:stage3

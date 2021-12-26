@@ -1,0 +1,22 @@
+name: Pre-merge CentOS Stage3a
+
+on:
+  push:
+    paths:
+      - '.github/workflows/pre-merge/test-centos-stage3a.yml'
+      - '.github/workflows/image-base-stage3a.yml'
+      - 'containers/guild-ops-base/stage3a.containerfile'
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: docker login
+      run: |
+        docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
+    - name: Updating cncli addon tool
+      run: |
+        docker build . --file containers/guild-ops-base/stage3a.containerfile --compress --no-cache --tag chaincrucial/guild-ops-base:stage3
