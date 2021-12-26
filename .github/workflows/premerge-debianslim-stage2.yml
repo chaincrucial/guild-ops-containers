@@ -5,7 +5,7 @@ on:
   push:
     paths:
       - 'scripts/cnode-helper-scripts/cabal-build-all.sh'
-      - 'containers/pre-merge/debianslim-stage2.containerfile'
+      - 'containers/pre-merge/debian-stage2.containerfile'
       - '.github/workflows/premerge-debianslim-stage2.yml'
   pull_request:
     branches: [ development ]

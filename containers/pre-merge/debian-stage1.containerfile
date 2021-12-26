@@ -1,4 +1,4 @@
-FROM debian:stable-slim
+FROM debian
 
 ENV PATH=/root/.cabal/bin:/root/.ghcup/bin:/root/.local/bin:/root/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
 
