@@ -1,13 +1,14 @@
 name: Pre-merge CentOS Stage2
 
 on:
+  workflow_dispatch:
   push:
     paths:
-      - '.github/workflows/pre-merge/test-centos-stage2.yml'
-      - '.github/workflows/image-base-stage2.yml'
-      - 'containers/guild-ops-base/stage2.containerfile'
-
-  workflow_dispatch:
+      - 'scripts/cnode-helper-scripts/cabal-build-all.sh'
+      - 'containers/pre-merge/rockylinux8-stage1_2.containerfile'
+      - '.github/workflows/premerge-rockylinux8-stage2.yml'
+  pull_request:
+    branches: [ development ]
 
 jobs:
   build:

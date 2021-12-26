@@ -18,7 +18,7 @@ jobs:
     - name: Updating cardano-hw-cli addon tool
       run: |
         docker build . --file containers/guild-ops-base/test-stage3b.containerfile --compress --no-cache --tag chaincrucial/guild-ops-base:test-stage3
-    - name: docker push stage3.containerfile
+    - name: docker push centos8-stage3.containerfile
       run: |
         docker push chaincrucial/guild-ops-base:test-stage3
     - name: docker dispatch stage 4

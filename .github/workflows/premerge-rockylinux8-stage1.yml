@@ -4,9 +4,11 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - '.github/workflows/pre-merge/test-centos-stage1.yml'
-      - '.github/workflows/image-base-stage1.yml'
-      - 'containers/guild-ops-base/stage1.containerfile'
+      - 'scripts/cnode-helper-scripts/prereqs.sh'
+      - 'containers/pre-merge/rockylinux8-stage1.containerfile'
+      - '.github/workflows/premerge-rockylinux8-stage1.yml'
+  pull_request:
+    branches: [ development ]
 
 jobs:
   build:
