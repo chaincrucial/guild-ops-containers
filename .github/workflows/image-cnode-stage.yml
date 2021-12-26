@@ -6,7 +6,7 @@ on:
     paths:
       - 'containers/guild-ops-cnode/entrypoint.sh'
       - 'containers/guild-ops-cnode/healthcheck.sh'
-      - 'containers/guild-ops-cnode/stage'
+      - 'containers/guild-ops-cnode/stage.containerfile'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,12 +17,12 @@ jobs:
         docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
     - name: Compiling new node software suite
       run: |
-        docker build . --file containers/guild-ops-cnode/stage --compress --tag chaincrucial/guild-ops-cnode:stage
+        docker build . --file containers/guild-ops-cnode/stage.containerfile --compress --tag chaincrucial/guild-ops-cnode:stage
     - name: docker push stage and latest
       run: |
         ver_cnode=$(curl -s https://raw.githubusercontent.com/chaincrucial/guild-ops-containers/master/containers/guild-ops-base/cardano-node-latest.txt)
         ver_guild=$(curl -s https://raw.githubusercontent.com/chaincrucial/guild-ops-containers/master/containers/guild-ops-base/guild-operators-latest.txt)
         docker tag chaincrucial/guild-ops-cnode:stage chaincrucial/guild-ops-cnode:latest
-        docker tag chaincrucial/guild-ops-cnode:stage chaincrucial/guild-ops-cnode:${ver_cnode}_${ver_guild::8}
+        docker tag chaincrucial/guild-ops-cnode:stage chaincrucial/guild-ops-cnode:"${ver_cnode}"_"${ver_guild::8}"
         docker push chaincrucial/guild-ops-cnode:latest
-        docker push chaincrucial/guild-ops-cnode:${ver_cnode}_${ver_guild::8}
+        docker push chaincrucial/guild-ops-cnode:"${ver_cnode}"_"${ver_guild::8}"

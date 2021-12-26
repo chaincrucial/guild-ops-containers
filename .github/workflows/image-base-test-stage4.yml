@@ -12,14 +12,14 @@ jobs:
         docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
     - name: Build guild-ops-base final image
       run: |
-        docker build . --file containers/guild-ops-base/test-stage4 --compress --no-cache --tag chaincrucial/guild-ops-base:test-stage4
+        docker build . --file containers/guild-ops-base/test-stage4.containerfile --compress --no-cache --tag chaincrucial/guild-ops-base:test-stage4
     - name: docker push stage4 and latest
       run: |
         TIMESTAMP=$(date +%s)
-        docker tag chaincrucial/guild-ops-base:test-stage4 chaincrucial/guild-ops-base:${TIMESTAMP}
+        docker tag chaincrucial/guild-ops-base:test-stage4 chaincrucial/guild-ops-base:"${TIMESTAMP}"
         docker tag chaincrucial/guild-ops-base:test-stage4 chaincrucial/guild-ops-base:test
         docker push chaincrucial/guild-ops-base:test-stage4
-        docker push chaincrucial/guild-ops-base:${TIMESTAMP}
+        docker push chaincrucial/guild-ops-base:"${TIMESTAMP}"
         docker push chaincrucial/guild-ops-base:test
     - name: docker dispatch cnode stage
       run: |

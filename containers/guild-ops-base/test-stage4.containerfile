@@ -1,3 +1,5 @@
+FROM chaincrucial/guild-ops-base:test-stage3 as base-test-stage3
+
 FROM centos:centos8.3.2011
 
 ENV \
@@ -10,25 +12,25 @@ ENV \
     PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH" \
     PATH=/root/.cabal/bin:/root/.ghcup/bin:/root/.local/bin:/root/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
 
-COPY --from=chaincrucial/guild-ops-base:stage3 /opt/cardano /opt/cardano
-COPY --from=chaincrucial/guild-ops-base:stage3 /root/tmp /root/tmp
-COPY --from=chaincrucial/guild-ops-base:stage3 /root/.cabal/bin/* /root/.cabal/bin/
-COPY --from=chaincrucial/guild-ops-base:stage3 /root/.cargo/bin/* /root/.cargo/bin/
-COPY --from=chaincrucial/guild-ops-base:stage3 /root/bin/cardano-hw-cli/cardano-hw-cli /root/.cabal/bin/
+COPY --from=base-test-stage3 /opt/cardano /opt/cardano
+COPY --from=base-test-stage3 /root/tmp /root/tmp
+COPY --from=base-test-stage3 /root/.cabal/bin/* /root/.cabal/bin/
+COPY --from=base-test-stage3 /root/.cargo/bin/* /root/.cargo/bin/
+COPY --from=base-test-stage3 /root/bin/cardano-hw-cli/cardano-hw-cli /root/.cabal/bin/
 
-# HYDRA CFG
+# HYDRA CFG 
 ADD https://hydra.iohk.io/build/7578887/download/1/mainnet-topology.json /opt/cardano/cnode/files/ 
-ADD https://hydra.iohk.io/build/7578887/download/1/mainnet-byron-genesis.json /opt/cardano/cnode/files/
-ADD https://hydra.iohk.io/build/7578887/download/1/mainnet-shelley-genesis.json /opt/cardano/cnode/files/
-ADD https://hydra.iohk.io/build/7578887/download/1/mainnet-alonzo-genesis.json /opt/cardano/cnode/files/
-ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/config-mainnet.json /opt/cardano/cnode/files/
-
-# HYDRA TESTNET CFG 
-ADD https://hydra.iohk.io/build/7578887/download/1/testnet-byron-genesis.json /opt/cardano/cnode/files/
-ADD https://hydra.iohk.io/build/7578887/download/1/testnet-shelley-genesis.json /opt/cardano/cnode/files/
-ADD https://hydra.iohk.io/build/7578887/download/1/testnet-alonzo-genesis.json /opt/cardano/cnode/files/
-ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/config-testnet.json /opt/cardano/cnode/files/
+ADD https://hydra.iohk.io/build/7578887/download/1/mainnet-byron-genesis.json /opt/cardano/cnode/files/ 
+ADD https://hydra.iohk.io/build/7578887/download/1/mainnet-shelley-genesis.json /opt/cardano/cnode/files/ 
+ADD https://hydra.iohk.io/build/7578887/download/1/mainnet-alonzo-genesis.json /opt/cardano/cnode/files/ 
+ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/config-mainnet.json /opt/cardano/cnode/files/ 
  
+# HYDRA TESTNET CFG 
+ADD https://hydra.iohk.io/build/7578887/download/1/testnet-byron-genesis.json /opt/cardano/cnode/files/ 
+ADD https://hydra.iohk.io/build/7578887/download/1/testnet-shelley-genesis.json /opt/cardano/cnode/files/ 
+ADD https://hydra.iohk.io/build/7578887/download/1/testnet-alonzo-genesis.json /opt/cardano/cnode/files/ 
+ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/config-testnet.json /opt/cardano/cnode/files/
+
 # HYDRA STAGING TESTNET CFG
 ADD https://hydra.iohk.io/build/7578887/download/1/staging-byron-genesis.json /opt/cardano/cnode/files/
 ADD https://hydra.iohk.io/build/7578887/download/1/staging-shelley-genesis.json /opt/cardano/cnode/files/
@@ -66,5 +68,5 @@ RUN /bin/bash -c "dnf -y install epel-release &&\
     sed -i 's/^#EKG_TIMEOUT=/EKG_TIMEOUT=/' /opt/cardano/cnode/scripts/env &&\
     sed -i 's/^#CURL_TIMEOUT=/CURL_TIMEOUT=/' /opt/cardano/cnode/scripts/env &&\
     sed -i 's/^#BLOCKLOG_DIR=/BLOCKLOG_DIR=/' /opt/cardano/cnode/scripts/env &&\
-    sed -i 's%^#BLOCKLOG_TZ="UTC"%BLOCKLOG_TZ="America/Los_Angeles"%' /opt/cardano/cnode/scripts/env &&\
+    sed -i 's%^#BLOCKLOG_TZ=\"UTC\"%BLOCKLOG_TZ=\"America/Los_Angeles\"%' /opt/cardano/cnode/scripts/env &&\
     sed -i 's/^ENABLE_CHATTR=true/ENABLE_CHATTR=false/' /opt/cardano/cnode/scripts/cntools.config"
