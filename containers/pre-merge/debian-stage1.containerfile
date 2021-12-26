@@ -1,8 +1,17 @@
 FROM debian
 
-ENV PATH=/root/.cabal/bin:/root/.ghcup/bin:/root/.local/bin:/root/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
+ENV \
+DEBIAN_FRONTEND=noninteractive \
+LANG=C.UTF-8 \
+ENV=/etc/profile \
+USER=root
 
-RUN /bin/bash -c "mkdir -pv /root/tmp /root/.{cabal,ghcup}/bin &&\
-    cd /root/tmp &&\
+WORKDIR /
+
+RUN set -x && apt-update &&\
+    mkdir -pv /root/.{cabal,ghcup}/bin &&\
     curl -sS -o prereqs.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/prereqs.sh &&\
-    chmod 755 prereqs.sh && export SUDO='N' ; export UPDATE_CHECK='N' ; ./prereqs.sh -l"
+    chmod 0755 prereqs.sh &&\
+    export SUDO='N' &&\
+    export UPDATE_CHECK='N' &&\
+    ./prereqs.sh -c -w
