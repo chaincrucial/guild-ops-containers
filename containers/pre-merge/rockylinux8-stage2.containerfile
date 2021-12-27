@@ -8,12 +8,12 @@ USER=root
 WORKDIR /
 
 RUN dnf -y install epel-release git &&\
-    mkdir -pv /root/.{cabal,ghcup}/bin &&\
+    mkdir -pv /root/.cabal/bin /root/.ghcup/bin &&\
     curl -sS -o prereqs.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/prereqs.sh &&\
     chmod 755 prereqs.sh &&\
     export SUDO='N' &&\
     export UPDATE_CHECK='N' &&\
-    ./prereqs.sh -w -c
+    ./prereqs.sh -c -w
 
 RUN git clone https://github.com/input-output-hk/cardano-node &&\
     pwd ; ls -l
