@@ -2,11 +2,6 @@ name: Pre-merge Ubuntu20 Stage1
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'scripts/cnode-helper-scripts/prereqsh.sh'
-      - 'containers/pre-merge/ubuntu20-stage1.containerfile'
-      - '.github/workflows/premerge-ubuntu20-stage1.yml'
   pull_request:
     branches: [ development ]
 

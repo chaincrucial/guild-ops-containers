@@ -2,11 +2,6 @@ name: Pre-merge Ubuntu20 Stage2
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'scripts/cnode-helper-scripts/cabal-build-all.sh'
-      - 'containers/pre-merge/ubuntu20-stage2.containerfile'
-      - '.github/workflows/premerge-ubuntu20-stage2.yml'
   pull_request:
     branches: [ development ]
 
@@ -20,4 +15,4 @@ jobs:
         docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
     - name: Compiling new node software
       run: |
-        docker build . --file containers/pre-merge/ubuntu20-stage1_2.containerfile --compress --tag chaincrucial/pre-merge:ubuntu20_stage2
+        docker build . --file containers/pre-merge/ubuntu20-stage1.containerfile --compress --tag chaincrucial/pre-merge:ubuntu20_stage2

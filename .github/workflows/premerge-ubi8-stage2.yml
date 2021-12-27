@@ -2,11 +2,6 @@ name: Pre-merge UBI8 Stage2
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'scripts/cnode-helper-scripts/cabal-build-all.sh'
-      - 'containers/pre-merge/ubi8-stage2.containerfile'
-      - '.github/workflows/premerge-ubi8-stage2.yml'
   pull_request:
     branches: [ development ]
 

@@ -2,11 +2,6 @@ name: Pre-merge CentOS8 Stage1
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'scripts/cnode-helper-scripts/prereqs.sh'
-      - 'containers/pre-merge/centos8-stage1.containerfile'
-      - '.github/workflows/premerge-centos8-stage1.yml'
   pull_request:
     branches: [ development ]
 

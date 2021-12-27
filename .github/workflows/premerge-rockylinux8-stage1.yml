@@ -2,11 +2,6 @@ name: Pre-merge RockyLinux8 Stage1
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'scripts/cnode-helper-scripts/prereqs.sh'
-      - 'containers/pre-merge/rockylinux8-stage1.containerfile'
-      - '.github/workflows/premerge-rockylinux8-stage1.yml'
   pull_request:
     branches: [ development ]
 
