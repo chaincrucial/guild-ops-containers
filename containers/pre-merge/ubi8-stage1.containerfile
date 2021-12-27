@@ -7,7 +7,7 @@ USER=root
 
 WORKDIR /
 
-RUN dnf -y install epel-release &&\
+RUN rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm &&\
     mkdir -pv /root/.{cabal,ghcup}/bin &&\
     curl -sS -o prereqs.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/prereqs.sh &&\
     chmod 755 prereqs.sh &&\

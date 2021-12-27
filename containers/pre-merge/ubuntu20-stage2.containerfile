@@ -8,13 +8,19 @@ USER=root
 
 WORKDIR /
 
-RUN set -x && apt update && apt install -y curl &&\
+RUN set -x && apt update && apt install -y curl git &&\
     mkdir -pv /root/.{cabal,ghcup}/bin &&\
     curl -sS -o prereqs.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/prereqs.sh &&\
     chmod 0755 prereqs.sh &&\
     export SUDO='N' &&\
     export UPDATE_CHECK='N' &&\
-    ./prereqs.sh -c -w
+    ./prereqs.sh -c -w \
+
+RUN git clone https://github.com/input-output-hk/cardano-node &&\
+    pwd ; ls -l
+
+WORKDIR /cardano-node
+
 RUN curl -o cardano-node-latest.txt https://raw.githubusercontent.com/chaincrucial/guild-ops-containers/master/containers/guild-ops-base/cardano-node-latest.txt &&\
     CNODE_VERSION=$(cat cardano-node-latest.txt) &&\
     echo "Checking out Cardano node: ${CNODE_VERSION}" &&\
