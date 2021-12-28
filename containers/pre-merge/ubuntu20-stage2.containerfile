@@ -1,10 +1,12 @@
 FROM ubuntu:20.04
 
 ENV \
-DEBIAN_FRONTEND=noninteractive \
-LANG=C.UTF-8 \
-ENV=/etc/profile \
-USER=root
+  CNODE_HOME=/opt/cardano/cnode
+  DEBIAN_FRONTEND=noninteractive \
+  LANG=C.UTF-8 \
+  ENV=/etc/profile \
+  USER=root \
+  PATH=$CNODE_HOME/scripts:/root/.cabal/bin:/root/.ghcup/bin:$PATH
 
 WORKDIR /
 
