@@ -15,7 +15,7 @@ RUN dnf -y install epel-release-8 git-2.27.0 && dnf clean all &&\
     chmod 755 prereqs.sh &&\
     export SUDO='N' &&\
     export UPDATE_CHECK='N' &&\
-    ./prereqs.sh -c -w
+    ./prereqs.sh
 
 RUN git clone https://github.com/input-output-hk/cardano-node &&\
     pwd ; ls -l
