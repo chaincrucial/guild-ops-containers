@@ -1,7 +1,7 @@
 FROM centos:centos8.3.2011
 
 ENV \
-  CNODE_HOME=/opt/cardano/cnode
+  CNODE_HOME=/opt/cardano/cnode \
   LANG=C.UTF-8 \
   ENV=/etc/profile \
   USER=root \

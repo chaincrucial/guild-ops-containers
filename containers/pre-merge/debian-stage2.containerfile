@@ -1,7 +1,7 @@
 FROM debian:stable
 
 ENV \
-  CNODE_HOME=/opt/cardano/cnode
+  CNODE_HOME=/opt/cardano/cnode \
   DEBIAN_FRONTEND=noninteractive \
   LANG=C.UTF-8 \
   ENV=/etc/profile \
