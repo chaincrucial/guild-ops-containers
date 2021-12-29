@@ -13,7 +13,7 @@ WORKDIR /
 RUN set -x && apt-get -y update && apt-get -y --no-install-recommends install curl=7.68.0-1ubuntu2.7 git=1:2.25.1-1ubuntu3 &&\
     rm -rf /var/lib/apt/lists/* &&\
     mkdir -pv /root/.cabal/bin /root/.ghcup/bin &&\
-    curl -sS -o prereqs.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/prereqs.sh &&\
+    curl --silent --show-error --insecure --output prereqs.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/prereqs.sh &&\
     chmod 0755 prereqs.sh &&\
     export SUDO='N' &&\
     export UPDATE_CHECK='N' &&\
@@ -24,7 +24,7 @@ RUN git clone https://github.com/input-output-hk/cardano-node &&\
 
 WORKDIR /cardano-node
 
-RUN curl -o cardano-node-latest.txt https://raw.githubusercontent.com/chaincrucial/guild-ops-containers/master/containers/guild-ops-base/cardano-node-latest.txt &&\
+RUN curl --silent --show-error --insecure --output cardano-node-latest.txt https://raw.githubusercontent.com/chaincrucial/guild-ops-containers/master/containers/guild-ops-base/cardano-node-latest.txt &&\
     CNODE_VERSION=$(cat cardano-node-latest.txt) &&\
     echo "Checking out Cardano node: ${CNODE_VERSION}" &&\
     git fetch --tags --all &&\
