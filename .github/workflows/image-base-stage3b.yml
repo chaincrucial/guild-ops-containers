@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'containers/guild-ops-base/cardano-hw-cli-latest.txt'
+
   workflow_dispatch:
 
 jobs:

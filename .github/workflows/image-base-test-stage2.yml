@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'containers/guild-ops-base/guild-operators-alpha-latest.txt'
+
   workflow_dispatch:
 
 jobs:

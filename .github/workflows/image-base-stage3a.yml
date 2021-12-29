@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'containers/guild-ops-base/cncli-latest.txt'
+
   workflow_dispatch:
 
 jobs:
