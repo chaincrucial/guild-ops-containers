@@ -4,15 +4,17 @@ on:
   workflow_dispatch:
   pull_request:
     branches: [ development ]
+    paths:
+      - scripts/cnode-helper-scripts/cabal-build-all.sh
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: container login
       run: |
         docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
-    - name: Testing cabal-build-all.sh
+    - name: Testing prereqs.sh -l and cabal-build-all.sh -l
       run: |
         docker build . --file containers/pre-merge/debian-cabal.containerfile --compress --tag chaincrucial/pre-merge:debian_cabal

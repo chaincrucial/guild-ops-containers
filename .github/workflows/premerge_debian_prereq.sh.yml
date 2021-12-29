@@ -1,12 +1,14 @@
-name: Pre-merge AmazonLinux2 Prerequisites
+name: Pre-merge Debian Prerequisites
 
 on:
   workflow_dispatch:
   pull_request:
     branches: [ development ]
+    paths:
+      - scripts/cnode-helper-scripts/prereqs.sh
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -15,4 +17,4 @@ jobs:
         docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
     - name: Testing prereqs.sh
       run: |
-        docker build . --file containers/pre-merge/amazonlinux2-prereqs.containerfile --compress --tag chaincrucial/pre-merge:amazonlinux2_prereqs
+        docker build . --file containers/pre-merge/debian_prereqs.sh.containerfile --compress --tag chaincrucial/pre-merge:debian_prereqs
