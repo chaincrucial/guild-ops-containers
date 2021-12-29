@@ -1,4 +1,4 @@
-name: Pre-merge CentOS8 Cabal Build
+name: Pre-merge CentOS8 Cabal Build w/ system libsodium
 
 on:
   workflow_dispatch:
