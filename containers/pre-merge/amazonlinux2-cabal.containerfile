@@ -18,7 +18,7 @@ RUN amazon-linux-extras install epel -y && yum -y install git-2.32.0-1.amzn2.0.1
     ./prereqs.sh -l
 
 
-RUN yum -y --allowerasing install python3 coreutils pkgconf-pkg-config libffi-devel gmp-devel openssl-devel ncurses-libs ncurses-compat-libs systemd systemd-devel zlib-devel make gcc-c++ git gnupg libtool autoconf srm iproute bc traceroute diffutils && yum clean all &&\
+RUN yum -y install python3 coreutils pkgconf-pkg-config libffi-devel gmp-devel openssl-devel ncurses-libs ncurses-compat-libs systemd systemd-devel zlib-devel make gcc-c++ git gnupg libtool autoconf srm iproute bc traceroute diffutils && yum clean all &&\
     git clone https://github.com/input-output-hk/cardano-node &&\
     pwd ; ls -l
 
