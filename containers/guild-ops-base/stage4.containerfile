@@ -1,6 +1,6 @@
 FROM chaincrucial/guild-ops-base:stage3 AS base-stage3
 
-FROM centos:centos8.3.2011
+FROM centos:centos8.4.2105
 
 ENV \
     ENV=/etc/profile \

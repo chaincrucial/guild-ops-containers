@@ -1,4 +1,4 @@
-name: Pre-merge Ubuntu20 Stage2
+name: Pre-merge AmazonLinux2 Prerequisites
 
 on:
   workflow_dispatch:
@@ -13,6 +13,6 @@ jobs:
     - name: container login
       run: |
         docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
-    - name: Compiling new node software
+    - name: Testing prereqs.sh
       run: |
-        docker build . --file containers/pre-merge/ubuntu20-stage2.containerfile --compress --tag chaincrucial/pre-merge:ubuntu20_stage2
+        docker build . --file containers/pre-merge/amazonlinux2-prereqs.containerfile --compress --tag chaincrucial/pre-merge:amazonlinux2_prereqs
