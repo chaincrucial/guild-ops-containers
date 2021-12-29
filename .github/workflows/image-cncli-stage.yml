@@ -1,6 +1,7 @@
 name: Image cncli Stage
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
 
 jobs:
   build:
@@ -12,11 +13,11 @@ jobs:
         docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
     - name: Compiling new node software suite
       run: |
-        docker build . --file containers/guild-ops-cncli/stage --compress --tag chaincrucial/guild-ops-cncli:stage
+        docker build . --file containers/guild-ops-cncli/stage.containerfile --compress --tag chaincrucial/guild-ops-cncli:stage
     - name: docker push stage and latest
       run: |
         ver_cncli=$(curl -s https://raw.githubusercontent.com/chaincrucial/guild-ops-containers/master/containers/guild-ops-base/cncli-latest.txt)
         docker tag chaincrucial/guild-ops-cncli:stage chaincrucial/guild-ops-cncli:latest
-        docker tag chaincrucial/guild-ops-cncli:stage chaincrucial/guild-ops-cncli:${ver_cncli}
+        docker tag chaincrucial/guild-ops-cncli:stage chaincrucial/guild-ops-cncli:"${ver_cncli}"
         docker push chaincrucial/guild-ops-cncli:latest
-        docker push chaincrucial/guild-ops-cncli:${ver_cncli}
+        docker push chaincrucial/guild-ops-cncli:"${ver_cncli}"

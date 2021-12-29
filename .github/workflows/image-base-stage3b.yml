@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'containers/guild-ops-base/cardano-hw-cli-latest.txt'
+
   workflow_dispatch:
 
 jobs:
@@ -16,7 +17,7 @@ jobs:
         docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
     - name: Updating cardano-hw-cli addon tool
       run: |
-        docker build . --file containers/guild-ops-base/stage3b --compress --no-cache --tag chaincrucial/guild-ops-base:stage3
+        docker build . --file containers/guild-ops-base/stage3b.containerfile --compress --no-cache --tag chaincrucial/guild-ops-base:stage3
     - name: docker push stage3
       run: |
         docker push chaincrucial/guild-ops-base:stage3

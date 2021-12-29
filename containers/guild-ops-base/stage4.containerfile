@@ -1,4 +1,6 @@
-FROM centos:centos8.3.2011
+FROM chaincrucial/guild-ops-base:stage3 AS base-stage3
+
+FROM centos:centos8.4.2105
 
 ENV \
     ENV=/etc/profile \
@@ -10,11 +12,11 @@ ENV \
     PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH" \
     PATH=/root/.cabal/bin:/root/.ghcup/bin:/root/.local/bin:/root/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
 
-COPY --from=chaincrucial/guild-ops-base:stage3 /opt/cardano /opt/cardano
-COPY --from=chaincrucial/guild-ops-base:stage3 /root/tmp /root/tmp
-COPY --from=chaincrucial/guild-ops-base:stage3 /root/.cabal/bin/* /root/.cabal/bin/
-COPY --from=chaincrucial/guild-ops-base:stage3 /root/.cargo/bin/* /root/.cargo/bin/
-COPY --from=chaincrucial/guild-ops-base:stage3 /root/bin/cardano-hw-cli/cardano-hw-cli /root/.cabal/bin/
+COPY --from=base-stage3 /opt/cardano /opt/cardano
+COPY --from=base-stage3 /root/tmp /root/tmp
+COPY --from=base-stage3 /root/.cabal/bin/* /root/.cabal/bin/
+COPY --from=base-stage3 /root/.cargo/bin/* /root/.cargo/bin/
+COPY --from=base-stage3 /root/bin/cardano-hw-cli/cardano-hw-cli /root/.cabal/bin/
 
 # HYDRA CFG
 ADD https://hydra.iohk.io/build/7578887/download/1/mainnet-topology.json /opt/cardano/cnode/files/ 
@@ -66,5 +68,4 @@ RUN /bin/bash -c "dnf -y install epel-release &&\
     sed -i 's/^#EKG_TIMEOUT=/EKG_TIMEOUT=/' /opt/cardano/cnode/scripts/env &&\
     sed -i 's/^#CURL_TIMEOUT=/CURL_TIMEOUT=/' /opt/cardano/cnode/scripts/env &&\
     sed -i 's/^#BLOCKLOG_DIR=/BLOCKLOG_DIR=/' /opt/cardano/cnode/scripts/env &&\
-    sed -i 's%^#BLOCKLOG_TZ="UTC"%BLOCKLOG_TZ="America/Los_Angeles"%' /opt/cardano/cnode/scripts/env &&\
-    sed -i 's/^ENABLE_CHATTR=true/ENABLE_CHATTR=false/' /opt/cardano/cnode/scripts/cntools.config"
+    sed -i 's%^#BLOCKLOG_TZ=\"UTC\"%BLOCKLOG_TZ=\"America/Los_Angeles\"%' /opt/cardano/cnode/scripts/env"
