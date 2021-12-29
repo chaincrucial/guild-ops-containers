@@ -4,7 +4,6 @@ ENV \
   CNODE_HOME=/opt/cardano/cnode \
   DEBIAN_FRONTEND=noninteractive \
   LANG=C.UTF-8 \
-  ENV=/etc/profile \
   USER=root \
   PATH=$CNODE_HOME/scripts:/root/.cabal/bin:/root/.ghcup/bin:$PATH
 

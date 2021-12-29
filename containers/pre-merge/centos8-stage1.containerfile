@@ -3,7 +3,6 @@ FROM centos:centos8.3.2011
 ENV \
   CNODE_HOME=/opt/cardano/cnode \
   LANG=C.UTF-8 \
-  ENV=/etc/profile \
   USER=root \
   PATH=$CNODE_HOME/scripts:/root/.cabal/bin:/root/.ghcup/bin:$PATH
 
