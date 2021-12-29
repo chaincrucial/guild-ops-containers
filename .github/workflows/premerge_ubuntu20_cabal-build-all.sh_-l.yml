@@ -1,4 +1,4 @@
-name: Pre-merge Ubuntu20 Cabal Build
+name: Pre-merge Ubuntu20 Cabal Build w/ system libsodium
 
 on:
   workflow_dispatch:
@@ -17,4 +17,4 @@ jobs:
         docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
     - name: Testing prereqs.sh -l and cabal-build-all.sh -l
       run: |
-        docker build . --file containers/pre-merge/ubuntu20-cabal.containerfile --compress --tag chaincrucial/pre-merge:ubuntu20_cabal
+        docker build . --file containers/pre-merge/ubuntu20-cabal_-l.containerfile --compress --tag chaincrucial/pre-merge:ubuntu20_cabal

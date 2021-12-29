@@ -18,7 +18,7 @@ RUN set -x && apt-get -y update && apt-get -y --no-install-recommends install cu
     export SUDO='N' &&\
     export UPDATE_CHECK='N' &&\
     export BOOTSTRAP_HASKELL_NO_UPGRADE=1 &&\
-    ./prereqs.sh -l
+    ./prereqs.sh
 
 RUN git clone https://github.com/input-output-hk/cardano-node &&\
     pwd ; ls -l
@@ -32,6 +32,6 @@ RUN curl --silent --show-error --insecure --output cardano-node-latest.txt https
     git checkout tags/"${CNODE_VERSION}" &&\
     git status &&\
     curl -o cabal.project.local https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/cabal.project.local &&\
-    /opt/cardano/cnode/scripts/cabal-build-all.sh -l &&\
+    /opt/cardano/cnode/scripts/cabal-build-all.sh &&\
     cabal install cardano-ping &&\
     /root/.cabal/bin/cardano-cli version ; /root/.cabal/bin/cardano-node version

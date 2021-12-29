@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM debian:stable
 
 ARG CNODE_HOME=/opt/cardano/cnode
 
@@ -10,15 +10,15 @@ ENV \
 
 WORKDIR /
 
-RUN set -x && apt-get -y update && apt-get -y --no-install-recommends install curl=7.68.0-1ubuntu2.7 git=1:2.25.1-1ubuntu3.2 ca-certificates=20190110ubuntu1 gnupg=2.2.19-3ubuntu2.1 apt-utils=2.0.6 udev=245.4-4ubuntu3.13 &&\
+RUN set -x && apt-get -y update && apt-get -y --no-install-recommends install curl=7.74.0-1.3+deb11u1 git=1:2.30.2-1 ca-certificates=20210119 gnupg=2.2.27-2 apt-utils=2.2.4 udev=247.3-6 &&\
     rm -rf /var/lib/apt/lists/* &&\
     mkdir -pv /root/.cabal/bin /root/.ghcup/bin &&\
     curl --silent --show-error --insecure --output prereqs.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/prereqs.sh &&\
     chmod 0755 prereqs.sh &&\
     export SUDO='N' &&\
     export UPDATE_CHECK='N' &&\
-    export export BOOTSTRAP_HASKELL_NO_UPGRADE=1 &&\
-    ./prereqs.sh
+    export BOOTSTRAP_HASKELL_NO_UPGRADE=1 &&\
+    ./prereqs.sh -l
 
 RUN git clone https://github.com/input-output-hk/cardano-node &&\
     pwd ; ls -l
@@ -32,6 +32,6 @@ RUN curl --silent --show-error --insecure --output cardano-node-latest.txt https
     git checkout tags/"${CNODE_VERSION}" &&\
     git status &&\
     curl -o cabal.project.local https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/cabal.project.local &&\
-    /opt/cardano/cnode/scripts/cabal-build-all.sh &&\
+    /opt/cardano/cnode/scripts/cabal-build-all.sh -l &&\
     cabal install cardano-ping &&\
     /root/.cabal/bin/cardano-cli version ; /root/.cabal/bin/cardano-node version
