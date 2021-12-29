@@ -10,7 +10,7 @@ ENV \
 
 WORKDIR /
 
-RUN set -x && apt-get -y update && apt-get -y --no-install-recommends install curl=7.68.0-1ubuntu2.7 git=1:2.25.1-1ubuntu3 &&\
+RUN set -x && apt-get -y update && apt-get -y --no-install-recommends install curl=7.68.0-1ubuntu2.7 git=1:2.25.1-1ubuntu3 ca-certificates=20190110ubuntu1 &&\
     rm -rf /var/lib/apt/lists/* &&\
     mkdir -pv /root/.cabal/bin /root/.ghcup/bin &&\
     curl --silent --show-error --insecure --output prereqs.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/prereqs.sh &&\
