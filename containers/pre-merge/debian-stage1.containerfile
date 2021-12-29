@@ -1,7 +1,8 @@
 FROM debian:stable
 
+ARG CNODE_HOME=/opt/cardano/cnode
+
 ENV \
-  CNODE_HOME=/opt/cardano/cnode \
   DEBIAN_FRONTEND=noninteractive \
   LANG=C.UTF-8 \
   USER=root \
