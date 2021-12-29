@@ -9,7 +9,7 @@ ENV \
 
 WORKDIR /
 
-RUN dnf -y install epel-release-8 git-2.27.0 && dnf clean all &&\
+RUN yum -y install epel-release-8 git-2.27.0 && yum clean all &&\
     mkdir -pv /root/.cabal/bin /root/.ghcup/bin &&\
     curl -sS -o prereqs.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/prereqs.sh &&\
     chmod 755 prereqs.sh &&\
@@ -18,7 +18,7 @@ RUN dnf -y install epel-release-8 git-2.27.0 && dnf clean all &&\
     ./prereqs.sh -l
 
 
-RUN dnf -y --allowerasing install python3 coreutils pkgconf-pkg-config libffi-devel gmp-devel openssl-devel ncurses-libs ncurses-compat-libs systemd systemd-devel zlib-devel make gcc-c++ git gnupg libtool autoconf srm iproute bc traceroute diffutils &&\
+RUN yum -y --allowerasing install python3 coreutils pkgconf-pkg-config libffi-devel gmp-devel openssl-devel ncurses-libs ncurses-compat-libs systemd systemd-devel zlib-devel make gcc-c++ git gnupg libtool autoconf srm iproute bc traceroute diffutils &&\
     git clone https://github.com/input-output-hk/cardano-node &&\
     pwd ; ls -l
 
