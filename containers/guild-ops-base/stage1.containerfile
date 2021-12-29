@@ -1,4 +1,4 @@
-FROM centos:centos8.3.2011
+FROM centos:centos8.4.2105
 
 ENV PATH=/root/.cabal/bin:/root/.ghcup/bin:/root/.local/bin:/root/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
 
