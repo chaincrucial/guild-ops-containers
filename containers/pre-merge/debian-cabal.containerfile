@@ -18,7 +18,7 @@ RUN set -x && apt-get -y update && apt-get -y --no-install-recommends install cu
     export SUDO='N' &&\
     export UPDATE_CHECK='N' &&\
     export BOOTSTRAP_HASKELL_NO_UPGRADE=1 &&\
-    ./prereqs.sh -l
+    ./prereqs.sh -l -b "${BRANCH}"
 
 RUN git clone https://github.com/input-output-hk/cardano-node &&\
     pwd ; ls -l

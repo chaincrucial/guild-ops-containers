@@ -11,25 +11,27 @@ WORKDIR /
 
 RUN dnf -y install epel-release-8 git-2.27.0 && dnf clean all &&\
     mkdir -pv /root/.cabal/bin /root/.ghcup/bin &&\
-    curl -sS -o prereqs.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/prereqs.sh &&\
+    curl -sS -o prereqs.sh https://raw.githubusercontent.com/cardano-community/guild-operators/"${BRANCH}"/scripts/cnode-helper-scripts/prereqs.sh &&\
     chmod 755 prereqs.sh &&\
     export SUDO='N' &&\
     export UPDATE_CHECK='N' &&\
-    ./prereqs.sh -l
+    ./prereqs.sh -l -b "${BRANCH}"
 
-RUN dnf -y --allowerasing install python3 coreutils pkgconf-pkg-config libffi-devel gmp-devel openssl-devel ncurses-libs ncurses-compat-libs systemd systemd-devel zlib-devel make gcc-c++ git gnupg libtool autoconf srm iproute bc traceroute diffutils && dnf clean all &&\
-    git clone https://github.com/input-output-hk/cardano-node &&\
+RUN echo "DEBUGNEXTSTEP" &&\
+    dnf -y --allowerasing install python3 coreutils pkgconf-pkg-config libffi-devel gmp-devel openssl-devel ncurses-libs ncurses-compat-libs systemd systemd-devel zlib-devel make gcc-c++ git gnupg libtool autoconf srm iproute bc traceroute diffutils && dnf clean all
+
+RUN git clone https://github.com/input-output-hk/cardano-node &&\
     pwd ; ls -l
 
 WORKDIR /cardano-node
 
-RUN curl -o cardano-node-latest.txt https://raw.githubusercontent.com/chaincrucial/guild-ops-containers/master/containers/guild-ops-base/cardano-node-latest.txt &&\
+RUN curl -o cardano-node-latest.txt https://raw.githubusercontent.com/chaincrucial/guild-ops-containers/alpha/containers/guild-ops-base/cardano-node-latest.txt &&\
     CNODE_VERSION=$(cat cardano-node-latest.txt) &&\
     echo "Checking out Cardano node: ${CNODE_VERSION}" &&\
     git fetch --tags --all &&\
     git checkout tags/"${CNODE_VERSION}" &&\
     git status &&\
-    curl -o cabal.project.local https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/cabal.project.local &&\
+    curl -o cabal.project.local https://raw.githubusercontent.com/cardano-community/guild-operators/"${BRANCH}"/files/cabal.project.local &&\
     /opt/cardano/cnode/scripts/cabal-build-all.sh -l &&\
     cabal install cardano-ping &&\
     /root/.cabal/bin/cardano-cli version ; /root/.cabal/bin/cardano-node version
