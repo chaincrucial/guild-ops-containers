@@ -1,4 +1,4 @@
-name: Pre-merge Debian Cabal Build
+name: Pre-merge AmazonLinux2 Cabal Build
 
 on:
   workflow_dispatch:
@@ -15,6 +15,6 @@ jobs:
     - name: container login
       run: |
         docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
-    - name: Testing prereqs.sh -l and cabal-build-all.sh -l
+    - name: Testing prereqs.sh and cabal-build-all.sh
       run: |
-        docker build . --file containers/pre-merge/debian-cabal.containerfile --compress --tag chaincrucial/pre-merge:debian_cabal
+        docker build . --file containers/pre-merge/amazonlinux2-cabal.containerfile --compress --tag chaincrucial/pre-merge:amazonlinux2_cabal

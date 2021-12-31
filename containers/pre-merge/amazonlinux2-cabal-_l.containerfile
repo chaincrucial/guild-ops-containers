@@ -15,7 +15,8 @@ RUN amazon-linux-extras install epel -y && yum -y install git-2.32.0-1.amzn2.0.1
     chmod 755 prereqs.sh &&\
     export SUDO='N' &&\
     export UPDATE_CHECK='N' &&\
-    ./prereqs.sh
+    ./prereqs.sh -l
+
 
 RUN git clone https://github.com/input-output-hk/cardano-node &&\
     pwd ; ls -l
@@ -29,6 +30,6 @@ RUN curl -o cardano-node-latest.txt https://raw.githubusercontent.com/chaincruci
     git checkout tags/"${CNODE_VERSION}" &&\
     git status &&\
     curl -o cabal.project.local https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/cabal.project.local &&\
-    /opt/cardano/cnode/scripts/cabal-build-all.sh &&\
+    /opt/cardano/cnode/scripts/cabal-build-all.sh -l &&\
     cabal install cardano-ping &&\
     /root/.cabal/bin/cardano-cli version ; /root/.cabal/bin/cardano-node version

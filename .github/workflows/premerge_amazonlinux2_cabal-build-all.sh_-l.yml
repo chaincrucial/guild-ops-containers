@@ -1,4 +1,4 @@
-name: Pre-merge AmazonLinux2 Cabal Build
+name: Pre-merge AmazonLinux2 Cabal Build Tests
 
 on:
   workflow_dispatch:
