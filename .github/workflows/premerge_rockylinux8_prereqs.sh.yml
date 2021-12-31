@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
-      - scripts/cnode-helper-scripts/prereqs.sh
-      - scripts/cnode-helper-scripts/cabal-build-all.sh
-      - files/cabal.project.local
+      - 'scripts/cnode-helper-scripts/prereqs.sh'
+      - 'scripts/cnode-helper-scripts/cabal-build-all.sh'
+      - 'files/cabal.project.local'
 
 jobs:
   login:
