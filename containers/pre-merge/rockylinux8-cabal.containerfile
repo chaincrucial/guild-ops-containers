@@ -15,7 +15,7 @@ RUN dnf -y install epel-release-8 git-2.27.0 && dnf clean all &&\
     chmod 755 prereqs.sh &&\
     export SUDO='N' &&\
     export UPDATE_CHECK='N' &&\
-    ./prereqs.sh -l
+    ./prereqs.sh -b "${BRANCH}"
 
 RUN dnf -y --allowerasing install python3 coreutils pkgconf-pkg-config libffi-devel gmp-devel openssl-devel ncurses-libs ncurses-compat-libs systemd systemd-devel zlib-devel make gcc-c++ git gnupg libtool autoconf srm iproute bc traceroute diffutils && dnf clean all &&\
     git clone https://github.com/input-output-hk/cardano-node &&\
@@ -30,6 +30,6 @@ RUN curl -o cardano-node-latest.txt https://raw.githubusercontent.com/chaincruci
     git checkout tags/"${CNODE_VERSION}" &&\
     git status &&\
     curl -o cabal.project.local https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/cabal.project.local &&\
-    /opt/cardano/cnode/scripts/cabal-build-all.sh -l &&\
+    /opt/cardano/cnode/scripts/cabal-build-all.sh &&\
     cabal install cardano-ping &&\
     /root/.cabal/bin/cardano-cli version ; /root/.cabal/bin/cardano-node version
