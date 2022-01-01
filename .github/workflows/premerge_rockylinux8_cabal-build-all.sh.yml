@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  login:
+  test-cabal-build-all:
     runs-on: ubuntu-latest
     steps:
     - name: Login to GitHub Container Registry
@@ -13,14 +13,10 @@ jobs:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-  test-cabal-build-all:
-    runs-on: ubuntu-latest
-    steps:
     - name: Extract branch from PR
       shell: bash
       run: echo "##[set-output name=branch;]${GITHUB_HEAD_REF}"
       id: pr_branch
-
     - uses: actions/checkout@v2
     - name: Testing cabal-build-all.sh
       run: |
