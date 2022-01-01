@@ -29,7 +29,7 @@ jobs:
     - name: Testing prereqs.sh
       run: |
         echo "Working from PR Branch: ${{ steps.pr_branch.outputs.branch }}"
-        docker build . --file containers/pre-merge/rockylinux8_prereqs.sh.containerfile --compress --build-arg BRANCH=${{ steps.pr_branch.outputs.branch }} --tag ghcr.io/chaincrucial/pre-merge:rockylinux8_prereqs
+        docker build . --file containers/pre-merge/rockylinux8_prereqs.sh.containerfile --compress --build-arg "BRANCH=${{ steps.pr_branch.outputs.branch }}" --tag ghcr.io/chaincrucial/pre-merge:rockylinux8_prereqs
     - name: Push pre-merge:rockylinux8_prereqs
       run: |
         docker push ghcr.io/chaincrucial/pre-merge:rockylinux8_prereqs
@@ -53,7 +53,7 @@ jobs:
       id: pr_branch
     - name: Testing prereqs.sh -l
       run: |
-        docker build . --file containers/pre-merge/rockylinux8_prereqs.sh_-l.containerfile --compress --build-arg BRANCH=${{ steps.pr_branch.outputs.branch }} --tag ghcr.io/chaincrucial/pre-merge:rockylinux8_prereqs_-l
+        docker build . --file containers/pre-merge/rockylinux8_prereqs.sh_-l.containerfile --compress --build-arg "BRANCH=${{ steps.pr_branch.outputs.branch }}" --tag ghcr.io/chaincrucial/pre-merge:rockylinux8_prereqs_-l
     - name: Push pre-merge:rockylinux8_prereqs_-l
       run: |
         docker push ghcr.io/chaincrucial/pre-merge:rockylinux8_prereqs_-l
