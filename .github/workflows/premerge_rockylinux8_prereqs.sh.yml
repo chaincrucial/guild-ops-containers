@@ -24,24 +24,24 @@ jobs:
     - uses: actions/checkout@v2
     - name: Testing prereqs.sh
       run: |
-        docker build . --file containers/pre-merge/rockylinux8_prereqs.sh.containerfile --compress --build-arg BRANCH=${{ GITHUB_REF_NAME }} --tag ghcr.io/cardano-community/pre-merge:rockylinux8_prereqs
+        docker build . --file containers/pre-merge/rockylinux8_prereqs.sh.containerfile --compress --build-arg BRANCH=${{ GITHUB_REF_NAME }} --tag ghcr.io/chaincrucial/pre-merge:rockylinux8_prereqs
     - name: Push pre-merge:rockylinux8_prereqs
       run: |
-        docker push ghcr.io/cardano-community/pre-merge:rockylinux8_prereqs
+        docker push ghcr.io/chaincrucial/pre-merge:rockylinux8_prereqs
   test-prereqs-with-system-libsodium:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: Testing prereqs.sh -l
       run: |
-        docker build . --file containers/pre-merge/rockylinux8_prereqs.sh_-l.containerfile --compress --build-arg BRANCH=${{ GITHUB_REF_NAME }} --tag ghcr.io/cardano-community/pre-merge:rockylinux8_prereqs_-l
+        docker build . --file containers/pre-merge/rockylinux8_prereqs.sh_-l.containerfile --compress --build-arg BRANCH=${{ GITHUB_REF_NAME }} --tag ghcr.io/chaincrucial/pre-merge:rockylinux8_prereqs_-l
     - name: Push pre-merge:rockylinux8_prereqs_-l
       run: |
-        docker push ghcr.io/cardano-community/pre-merge:rockylinux8_prereqs_-l
+        docker push ghcr.io/chaincrucial/pre-merge:rockylinux8_prereqs_-l
   trigger-cabal:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: Trigger the cabal build tests
       run: |
-        curl -XPOST -u "${{ secrets.REPO_SCOPED_USER}}:${{secrets.REPO_SCOPED_TOKEN }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/chaincrucial/guild-ops-containers/actions/workflows/premerge_rockylinux8_cabal-build-all.sh.yml/dispatches --data '{"ref": "alpha"}'
+        curl -XPOST -u "${{ secrets.REPO_SCOPED_USER}}:${{secrets.REPO_SCOPED_TOKEN }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/chaincrucial/guild-ops-containers/actions/workflows/premerge_rockylinux8_cabal-build-all.sh.yml/dispatches --data '{"ref": "development"}'
