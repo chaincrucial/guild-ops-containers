@@ -18,6 +18,23 @@ jobs:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
+  test-refs:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Extract branch from PR
+      shell: bash
+      run: echo "##[set-output name=branch;]${GITHUB_REF#refs/heads/}"
+      id: pr_branch
+    - name: Examine GITHUB_REF
+      run: |
+        echo "GITHUB_REF: ${{ GITHUB_REF }}"
+        echo "GITHUB_REF_NAME: ${{ GITHUB_REF_NAME }}"
+        echo "GITHUB_REF_NAME: ${{ GITHUB_REF_NAME }}"
+        echo "env.GITHUB_REF: ${{ env.GITHUB_REF }}"
+        echo "env.GITHUB_REF_NAME: ${{ env.GITHUB_REF_NAME }}"
+        echo "env.GITHUB_REF_NAME: ${{ env.GITHUB_REF_NAME }}"
+        echo "pr_branch" ${{ steps.pr_branch.outputs }}"
   test-prereqs:
     runs-on: ubuntu-latest
     steps:
