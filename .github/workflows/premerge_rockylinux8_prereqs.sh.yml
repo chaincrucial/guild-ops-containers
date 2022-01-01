@@ -39,7 +39,7 @@ jobs:
       id: pr_branch
     - name: Testing prereqs.sh
       run: |
-        echo ${{ steps.pr_branch.outputs }}
+        echo "Working from PR Branch: ${{ steps.pr_branch.outputs.branch }}"
         docker build . --file containers/pre-merge/rockylinux8_prereqs.sh.containerfile --compress --build-arg BRANCH=${{ steps.pr_branch.outputs.branch }} --tag ghcr.io/chaincrucial/pre-merge:rockylinux8_prereqs
     - name: Push pre-merge:rockylinux8_prereqs
       run: |
@@ -58,6 +58,7 @@ jobs:
       id: pr_branch
     - name: Testing prereqs.sh -l
       run: |
+        echo "Working from PR Branch: ${{ steps.pr_branch.outputs.branch }}"
         docker build . --file containers/pre-merge/rockylinux8_prereqs.sh_-l.containerfile --compress --build-arg BRANCH=${{ steps.pr_branch.outputs.branch }} --tag ghcr.io/chaincrucial/pre-merge:rockylinux8_prereqs_-l
     - name: Push pre-merge:rockylinux8_prereqs_-l
       run: |
