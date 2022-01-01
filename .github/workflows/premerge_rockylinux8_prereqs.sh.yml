@@ -24,11 +24,13 @@ jobs:
     - uses: actions/checkout@v2
     - name: Extract branch from PR
       shell: bash
-      run: echo "##[set-output name=branch;]${GITHUB_REF#refs/heads/}"
+      run: echo "##[set-output name=branch;]${GITHUB_HEAD_REF}"
       id: pr_branch
     - name: Examine GITHUB_REF
       run: |
+        echo "pr_branch ${{ steps.pr_branch }}"
         echo "pr_branch ${{ steps.pr_branch.outputs }}"
+        echo "pr_branch ${{ steps.pr_branch.outputs.branch }}"
   test-prereqs:
     runs-on: ubuntu-latest
     steps:
