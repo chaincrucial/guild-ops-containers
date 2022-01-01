@@ -1,4 +1,4 @@
-FROM rockylinux/rockylinux:8
+FROM amazonlinux:2
 
 ARG CNODE_HOME=/opt/cardano/cnode
 
@@ -9,16 +9,16 @@ ENV \
 
 WORKDIR /
 
-RUN dnf -y install epel-release-8 git-2.27.0 && dnf clean all &&\
+RUN amazon-linux-extras install epel -y && yum -y install git-2.32.0-1.amzn2.0.1 && yum clean all &&\
     mkdir -pv /root/.cabal/bin /root/.ghcup/bin &&\
     curl -sS -o prereqs.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/prereqs.sh &&\
     chmod 755 prereqs.sh &&\
     export SUDO='N' &&\
     export UPDATE_CHECK='N' &&\
-    ./prereqs.sh -l -b "${BRANCH}"
+    ./prereqs.sh -l
 
-RUN dnf -y --allowerasing install python3 coreutils pkgconf-pkg-config libffi-devel gmp-devel openssl-devel ncurses-libs ncurses-compat-libs systemd systemd-devel zlib-devel make gcc-c++ git gnupg libtool autoconf srm iproute bc traceroute diffutils && dnf clean all &&\
-    git clone https://github.com/input-output-hk/cardano-node &&\
+
+RUN git clone https://github.com/input-output-hk/cardano-node &&\
     pwd ; ls -l
 
 WORKDIR /cardano-node
