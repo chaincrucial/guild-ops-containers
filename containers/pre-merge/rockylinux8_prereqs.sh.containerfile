@@ -12,8 +12,9 @@ WORKDIR /
 
 RUN dnf -y install epel-release-8 && dnf clean all &&\
     mkdir -pv /root/.cabal/bin /root/.ghcup/bin &&\
-    curl -sS -o prereqs.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/prereqs.sh &&\
+    curl -sS -o prereqs.sh https://raw.githubusercontent.com/cardano-community/guild-operators/"${BRANCH}"/scripts/cnode-helper-scripts/prereqs.sh &&\
     chmod 755 prereqs.sh &&\
     export SUDO='N' &&\
     export UPDATE_CHECK='N' &&\
+    echo "Working from PR Branch: ${BRANCH}" &&\
     ./prereqs.sh -b "${BRANCH}"
