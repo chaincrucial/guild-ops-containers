@@ -18,7 +18,7 @@ jobs:
     steps:
     - name: Extract branch from PR
       shell: bash
-      run: echo "##[set-output name=branch;]${GITHUB_REF#refs/heads/}"
+      run: echo "##[set-output name=branch;]${GITHUB_HEAD_REF}"
       id: pr_branch
 
     - uses: actions/checkout@v2
