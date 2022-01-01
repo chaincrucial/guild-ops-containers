@@ -15,4 +15,4 @@ RUN dnf -y install epel-release-8 && dnf clean all &&\
     chmod 755 prereqs.sh &&\
     export SUDO='N' &&\
     export UPDATE_CHECK='N' &&\
-    ./prereqs.sh -l
+    ./prereqs.sh -l -b "${BRANCH}"
