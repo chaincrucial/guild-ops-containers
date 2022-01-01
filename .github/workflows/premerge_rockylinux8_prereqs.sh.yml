@@ -28,7 +28,7 @@ jobs:
       id: pr_branch
     - name: Examine GITHUB_REF
       run: |
-        echo "pr_branch" ${{ steps.pr_branch.outputs }}"
+        echo "pr_branch ${{ steps.pr_branch.outputs }}"
   test-prereqs:
     runs-on: ubuntu-latest
     steps:
