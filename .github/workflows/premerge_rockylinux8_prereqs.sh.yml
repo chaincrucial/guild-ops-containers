@@ -28,9 +28,6 @@ jobs:
       id: pr_branch
     - name: Examine GITHUB_REF
       run: |
-        echo "env.GITHUB_REF: ${{ env.GITHUB_REF }}"
-        echo "env.GITHUB_REF_NAME: ${{ env.GITHUB_REF_NAME }}"
-        echo "env.GITHUB_REF_NAME: ${{ env.GITHUB_REF_NAME }}"
         echo "pr_branch" ${{ steps.pr_branch.outputs }}"
   test-prereqs:
     runs-on: ubuntu-latest
