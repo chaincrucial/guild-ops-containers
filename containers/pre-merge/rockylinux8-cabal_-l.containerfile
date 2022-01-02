@@ -18,7 +18,6 @@ RUN dnf -y install epel-release-8 git-2.27.0 && dnf clean all &&\
     chmod 755 prereqs.sh &&\
     export SUDO='N' &&\
     export UPDATE_CHECK='N' &&\
-    echo "Working from PR Branch: ${BRANCH}" &&\
     ./prereqs.sh -l -b "${BRANCH}"
 
 RUN dnf -y --allowerasing install python3 coreutils pkgconf-pkg-config libffi-devel gmp-devel openssl-devel ncurses-libs ncurses-compat-libs systemd systemd-devel zlib-devel make gcc-c++ git gnupg libtool autoconf srm iproute bc traceroute diffutils && dnf clean all &&\
