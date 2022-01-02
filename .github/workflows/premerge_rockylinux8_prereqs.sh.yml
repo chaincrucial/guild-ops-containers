@@ -31,6 +31,8 @@ jobs:
       run: |
         docker push ghcr.io/chaincrucial/pre-merge:rockylinux8_prereqs
   call-cabal-build-all:
+    runs-on: ubuntu-latest
+    steps:
     - name: Trigger the cabal build tests
       needs: test-prereqs
       run: |
@@ -58,7 +60,9 @@ jobs:
       run: |
         docker push ghcr.io/chaincrucial/pre-merge:rockylinux8_prereqs_-l
   call-cabal-build-all-wth-system-libsodium:
-    - name: Trigger the cabal build tests
+    runs-on: ubuntu-latest
+    steps:
+    - name: Trigger the cabal build libsodium tests
       needs: test-prereqs-with-system-libsodium
       run: |
         curl -XPOST -u "${{ secrets.REPO_SCOPED_USER}}:${{secrets.REPO_SCOPED_TOKEN }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/chaincrucial/guild-ops-containers/actions/workflows/premerge_rockylinux8_cabal-build-all_-l.sh.yml/dispatches --data '{"ref": "development"}'
