@@ -5,8 +5,7 @@ ARG CNODE_HOME=/opt/cardano/cnode
 ENV \
   LANG=C.UTF-8 \
   USER=root \
-  PATH=$CNODE_HOME/scripts:/root/.cabal/bin:/root/.ghcup/bin:$PATH \
-  BRANCH="${BRANCH}"
+  PATH=$CNODE_HOME/scripts:/root/.cabal/bin:/root/.ghcup/bin:$PATH
 
 WORKDIR /
 
