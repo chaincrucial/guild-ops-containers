@@ -26,10 +26,10 @@ jobs:
     - name: Testing prereqs.sh
       run: |
         export BRANCH="${{ steps.pr_branch.outputs.branch }}"
-        docker build . --file containers/pre-merge/rockylinux8_prereqs.sh.containerfile --compress --build-arg BRANCH --tag ghcr.io/chaincrucial/pre-merge:rockylinux8_prereqs
+        docker build . --file containers/pre-merge/rockylinux8_prereqs.sh.containerfile --compress --build-arg BRANCH --tag "ghcr.io/chaincrucial/pre-merge_${BRANCH}:rockylinux8_prereqs"
     - name: Push pre-merge:rockylinux8_prereqs
       run: |
-        docker push ghcr.io/chaincrucial/pre-merge:rockylinux8_prereqs
+        docker push "ghcr.io/chaincrucial/pre-merge_${BRANCH}:rockylinux8_prereqs"
 
   prerequisites-with-system-libsodium:
     runs-on: ubuntu-latest
@@ -48,10 +48,10 @@ jobs:
     - name: Testing prereqs.sh -l
       run: |
         export BRANCH="${{ steps.pr_branch.outputs.branch }}"
-        docker build . --file containers/pre-merge/rockylinux8_prereqs.sh_-l.containerfile --compress --build-arg BRANCH --tag ghcr.io/chaincrucial/pre-merge:rockylinux8_prereqs_-l
+        docker build . --file containers/pre-merge/rockylinux8_prereqs.sh_-l.containerfile --compress --build-arg BRANCH --tag "ghcr.io/chaincrucial/pre-merge_${BRANCH}:rockylinux8_prereqs_-l"
     - name: Push pre-merge:rockylinux8_prereqs_-l
       run: |
-        docker push ghcr.io/chaincrucial/pre-merge:rockylinux8_prereqs_-l
+        docker push "ghcr.io/chaincrucial/pre-merge_${BRANCH}:rockylinux8_prereqs_-l"
 
   build:
     needs: prerequisites
@@ -72,7 +72,7 @@ jobs:
       run: |
         export BRANCH="${{ steps.pr_branch.outputs.branch }}"
         echo "Working from PR Branch: ${BRANCH}"
-        docker build . --file containers/pre-merge/rockylinux8-cabal_-l.containerfile --compress --build-arg BRANCH --tag ghcr.io/chaincrucial/pre-merge:rockylinux8_cabal
+        docker build . --file containers/pre-merge/rockylinux8-cabal_-l.containerfile --compress --build-arg BRANCH --tag "ghcr.io/chaincrucial/pre-merge_${BRANCH}:rockylinux8_cabal"
 
   build-wth-system-libsodium:
     needs: prerequisites-with-system-libsodium
@@ -93,4 +93,4 @@ jobs:
       run: |
         export BRANCH="${{ steps.pr_branch.outputs.branch }}"
         echo "Working from PR Branch: ${BRANCH}"
-        docker build . --file containers/pre-merge/rockylinux8-cabal_-l.containerfile --compress --build-arg BRANCH --tag ghcr.io/chaincrucial/pre-merge:rockylinux8_cabal_-l
+        docker build . --file containers/pre-merge/rockylinux8-cabal_-l.containerfile --compress --build-arg BRANCH --tag "ghcr.io/chaincrucial/pre-merge_${BRANCH}:rockylinux8_cabal_-l"

@@ -1,4 +1,4 @@
-FROM rockylinux/rockylinux:8
+FROM ghcr.io/chaincrucial/pre-merge_${BRANCH}:rockylinux8_prereqs
 ARG BRANCH
 ARG CNODE_HOME=/opt/cardano/cnode
 
