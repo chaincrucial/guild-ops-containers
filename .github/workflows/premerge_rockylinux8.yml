@@ -26,11 +26,13 @@ jobs:
     - name: Testing prereqs.sh
       run: |
         export BRANCH="${{ steps.pr_branch.outputs.branch }}"
-        docker build . --file containers/pre-merge/rockylinux8_prereqs.sh.containerfile --compress --build-arg BRANCH --tag "ghcr.io/chaincrucial/pre-merge-rockylinux8:${BRANCH//\//_}_prereqs"
+        export COMIMIT=$(git rev-parse --short "$GITHUB_SHA")
+        docker build . --file containers/pre-merge/rockylinux8_prereqs.sh.containerfile --compress --build-arg BRANCH --build-arg COMMIT --tag "ghcr.io/chaincrucial/pre-merge-rockylinux8:prereqs_${COMMIT}"
     - name: Push pre-merge-rockylinux8:${BRANCH}_prereqs
       run: |
         export BRANCH="${{ steps.pr_branch.outputs.branch }}"
-        docker push "ghcr.io/chaincrucial/pre-merge-rockylinux8:${BRANCH//\//_}_prereqs"
+        export COMIMIT=$(git rev-parse --short "$GITHUB_SHA")
+        docker push "ghcr.io/chaincrucial/pre-merge-rockylinux8:prereqs_${COMMIT}"
 
   prerequisites-with-system-libsodium:
     runs-on: ubuntu-latest
@@ -49,11 +51,13 @@ jobs:
     - name: Testing prereqs.sh -l
       run: |
         export BRANCH="${{ steps.pr_branch.outputs.branch }}"
-        docker build . --file containers/pre-merge/rockylinux8_prereqs.sh_-l.containerfile --compress --build-arg BRANCH --tag "ghcr.io/chaincrucial/pre-merge-rockylinux8:${BRANCH//\//_}_prereqs_-l"
+        export COMIMIT=$(git rev-parse --short "$GITHUB_SHA")
+        docker build . --file containers/pre-merge/rockylinux8_prereqs.sh_-l.containerfile --compress --build-arg BRANCH --build-arg COMMIT --tag "ghcr.io/chaincrucial/pre-merge-rockylinux8:prereqs_-l_${COMMIT}"
     - name: Push pre-merge-rockylinux8:${BRANCH}_prereqs_-l
       run: |
         export BRANCH="${{ steps.pr_branch.outputs.branch }}"
-        docker push "ghcr.io/chaincrucial/pre-merge-rockylinux8:${BRANCH//\//_}_prereqs_-l"
+        export COMIMIT=$(git rev-parse --short "$GITHUB_SHA")
+        docker push "ghcr.io/chaincrucial/pre-merge-rockylinux8:${COMMIT}_prereqs_-l"
 
   build:
     needs: prerequisites
@@ -73,8 +77,9 @@ jobs:
     - name: Testing cabal-build-all.sh
       run: |
         export BRANCH="${{ steps.pr_branch.outputs.branch }}"
-        echo "Working from PR Branch: ${BRANCH}"
-        docker build . --file containers/pre-merge/rockylinux8-cabal_-l.containerfile --compress --build-arg BRANCH --tag "ghcr.io/chaincrucial/pre-merge-rockylinux8:${BRANCH//\//_}_cabal"
+        export COMIMIT=$(git rev-parse --short "$GITHUB_SHA")
+        echo "Working from PR Branch ${BRANCH} on Commit ${COMMIT}"
+        docker build . --file containers/pre-merge/rockylinux8-cabal_-l.containerfile --compress --build-arg BRANCH --build-arg COMMIT --tag "ghcr.io/chaincrucial/pre-merge-rockylinux8:cabal_${COMMIT}"
 
   build-wth-system-libsodium:
     needs: prerequisites-with-system-libsodium
@@ -94,5 +99,6 @@ jobs:
     - name: Testing cabal-build-all.sh -l
       run: |
         export BRANCH="${{ steps.pr_branch.outputs.branch }}"
+        export COMIMIT=$(git rev-parse --short "$GITHUB_SHA")
         echo "Working from PR Branch: ${BRANCH}"
-        docker build . --file containers/pre-merge/rockylinux8-cabal_-l.containerfile --compress --build-arg BRANCH --tag "ghcr.io/chaincrucial/pre-merge-rockylinux8:${BRANCH//\//_}_cabal_-l"
+        docker build . --file containers/pre-merge/rockylinux8-cabal_-l.containerfile --compress --build-arg BRANCH --build-arg COMMIT --tag "ghcr.io/chaincrucial/pre-merge-rockylinux8:cabal_-l_${COMMIT}"
