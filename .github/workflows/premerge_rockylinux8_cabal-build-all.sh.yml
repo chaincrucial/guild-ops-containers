@@ -22,4 +22,4 @@ jobs:
       run: |
         export BRANCH="${{ steps.pr_branch.outputs.branch }}"
         echo "Working from PR Branch: ${BRANCH}"
-        docker build . --file containers/pre-merge/rockylinux8-cabal.containerfile --compress --env BRANCH --tag ghcr.io/chaincrucial/pre-merge:rockylinux8_cabal
+        docker build . --file containers/pre-merge/rockylinux8-cabal.containerfile --compress --build-arg BRANCH --tag ghcr.io/chaincrucial/pre-merge:rockylinux8_cabal
