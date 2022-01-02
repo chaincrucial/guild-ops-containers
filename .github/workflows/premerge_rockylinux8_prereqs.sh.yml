@@ -19,7 +19,7 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
     - uses: actions/checkout@v2
-    - name: PR Branch - ${GITHUB_HEAD_REF}
+    - name: Extract branch from PR
       shell: bash
       run: echo "##[set-output name=branch;]${GITHUB_HEAD_REF}"
       id: pr_branch
@@ -30,7 +30,9 @@ jobs:
     - name: Push pre-merge:rockylinux8_prereqs
       run: |
         docker push ghcr.io/chaincrucial/pre-merge:rockylinux8_prereqs
+  call-cabal-build-all:
     - name: Trigger the cabal build tests
+      needs: test-prereqs
       run: |
         curl -XPOST -u "${{ secrets.REPO_SCOPED_USER}}:${{secrets.REPO_SCOPED_TOKEN }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/chaincrucial/guild-ops-containers/actions/workflows/premerge_rockylinux8_cabal-build-all.sh.yml/dispatches --data '{"ref": "development"}'
 
@@ -44,7 +46,7 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
     - uses: actions/checkout@v2
-    - name: PR Branch - ${GITHUB_HEAD_REF}
+    - name: Extract branch from PR
       shell: bash
       run: echo "##[set-output name=branch;]${GITHUB_HEAD_REF}"
       id: pr_branch
@@ -55,6 +57,8 @@ jobs:
     - name: Push pre-merge:rockylinux8_prereqs_-l
       run: |
         docker push ghcr.io/chaincrucial/pre-merge:rockylinux8_prereqs_-l
+  call-cabal-build-all-wth-system-libsodium:
     - name: Trigger the cabal build tests
+      needs: test-prereqs-with-system-libsodium
       run: |
         curl -XPOST -u "${{ secrets.REPO_SCOPED_USER}}:${{secrets.REPO_SCOPED_TOKEN }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/chaincrucial/guild-ops-containers/actions/workflows/premerge_rockylinux8_cabal-build-all_-l.sh.yml/dispatches --data '{"ref": "development"}'

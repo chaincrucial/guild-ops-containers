@@ -1,10 +1,10 @@
-name: Pre-merge RockyLinux8 Cabal Build Libsodium Test
+name: Pre-merge RockyLinux8 Cabal Build Test
 
 on:
   workflow_dispatch:
 
 jobs:
-  test-cabal-build-all:
+  test-cabal-build-all-with-system-libsodium:
     runs-on: ubuntu-latest
     steps:
     - name: Login to GitHub Container Registry
@@ -13,7 +13,7 @@ jobs:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-    - name: PR Branch - ${GITHUB_HEAD_REF}
+    - name: Extract branch from PR
       shell: bash
       run: echo "##[set-output name=branch;]${GITHUB_HEAD_REF}"
       id: pr_branch
