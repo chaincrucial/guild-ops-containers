@@ -19,16 +19,13 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
     - uses: actions/checkout@v2
-    - name: Extract branch from PR
+    - name: PR Branch - ${GITHUB_HEAD_REF}
       shell: bash
       run: echo "##[set-output name=branch;]${GITHUB_HEAD_REF}"
       id: pr_branch
-    - name: Export branch ${{ steps.pr_branch.outputs.branch }}
-      run: |
-        export BRANCH=${{ steps.pr_branch.outputs.branch }}
     - name: Testing prereqs.sh
       run: |
-        echo "Working from PR Branch: ${BRANCH}"
+        export BRANCH="${{ steps.pr_branch.outputs.branch }}"
         docker build . --file containers/pre-merge/rockylinux8_prereqs.sh.containerfile --compress --build-arg BRANCH --tag ghcr.io/chaincrucial/pre-merge:rockylinux8_prereqs
     - name: Push pre-merge:rockylinux8_prereqs
       run: |
@@ -47,16 +44,13 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
     - uses: actions/checkout@v2
-    - name: Extract branch from PR
+    - name: PR Branch - ${GITHUB_HEAD_REF}
       shell: bash
       run: echo "##[set-output name=branch;]${GITHUB_HEAD_REF}"
       id: pr_branch
-    - name: Export branch ${{ steps.pr_branch.outputs.branch }}
-      run: |
-        export BRANCH=${{ steps.pr_branch.outputs.branch }}
     - name: Testing prereqs.sh -l
       run: |
-        echo "Working from PR Branch: ${BRANCH}"
+        export BRANCH="${{ steps.pr_branch.outputs.branch }}"
         docker build . --file containers/pre-merge/rockylinux8_prereqs.sh_-l.containerfile --compress --build-arg BRANCH --tag ghcr.io/chaincrucial/pre-merge:rockylinux8_prereqs_-l
     - name: Push pre-merge:rockylinux8_prereqs_-l
       run: |
