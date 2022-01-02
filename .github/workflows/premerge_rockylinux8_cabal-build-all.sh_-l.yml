@@ -20,5 +20,6 @@ jobs:
     - uses: actions/checkout@v2
     - name: Testing cabal-build-all.sh -l
       run: |
-        echo "Working from PR Branch: ${{ steps.pr_branch.outputs.branch }}"
-        docker build . --file containers/pre-merge/rockylinux8-cabal_-l.containerfile --compress --env "BRANCH=${{ steps.pr_branch.outputs.branch }}" --tag ghcr.io/chaincrucial/pre-merge:rockylinux8_cabal_-l
+        export BRANCH="${{ steps.pr_branch.outputs.branch }}"
+        echo "Working from PR Branch: ${BRANCH}"
+        docker build . --file containers/pre-merge/rockylinux8-cabal_-l.containerfile --compress --env BRANCH --tag ghcr.io/chaincrucial/pre-merge:rockylinux8_cabal_-l
