@@ -29,6 +29,7 @@ jobs:
         docker build . --file containers/pre-merge/rockylinux8_prereqs.sh.containerfile --compress --build-arg BRANCH --tag "ghcr.io/chaincrucial/pre-merge-rockylinux8:${BRANCH//\//_}_prereqs"
     - name: Push pre-merge:rockylinux8_prereqs
       run: |
+        export BRANCH="${{ steps.pr_branch.outputs.branch }}"
         docker push "ghcr.io/chaincrucial/pre-merge-rockylinux8:${BRANCH//\//_}_prereqs"
 
   prerequisites-with-system-libsodium:
@@ -51,6 +52,7 @@ jobs:
         docker build . --file containers/pre-merge/rockylinux8_prereqs.sh_-l.containerfile --compress --build-arg BRANCH --tag "ghcr.io/chaincrucial/pre-merge-rockylinux8:${BRANCH//\//_}_prereqs_-l"
     - name: Push pre-merge:rockylinux8_prereqs_-l
       run: |
+        export BRANCH="${{ steps.pr_branch.outputs.branch }}"
         docker push "ghcr.io/chaincrucial/pre-merge-rockylinux8:${BRANCH//\//_}_prereqs_-l"
 
   build:
