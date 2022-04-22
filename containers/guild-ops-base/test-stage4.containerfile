@@ -1,6 +1,6 @@
 FROM chaincrucial/guild-ops-base:test-stage3 as base-test-stage3
 
-FROM centos:centos8.4.2105
+FROM rockylinux/rockylinux:8
 
 ENV \
     ENV=/etc/profile \
