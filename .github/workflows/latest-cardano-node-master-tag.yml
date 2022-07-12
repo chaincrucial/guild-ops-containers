@@ -5,27 +5,28 @@ on:
   workflow_dispatch:
 
 jobs:
-  get-version:
+  get-latest-cardano-node-tag:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout input-output-hk/cardano-node
+        uses: actions/checkout@v2.4.2
+        with:
+            fetch-depth: 0
+            repository: 'input-output-hk/cardano-node'
+
+      - name: Get Latest Tag of cardano-node
+        uses: WyriHaximus/github-action-get-previous-tag@v1
+        id: previoustag
+
+      - name: Checkout the local repository
+        uses: actions/checkout@v2
         with:
           token: ${{ secrets.REPO_SCOPED_TOKEN }}
 
-      - uses: actions-ecosystem/action-release-label@v1
-        id: release-label
-        if: ${{ github.event.pull_request.merged == true }}
-        with:
-          repository: input-output-hk/cardano-node
-
-      - uses: actions-ecosystem/action-get-latest-tag@v1
-        id: get-latest-tag
-        if: ${{ steps.release-label.outputs.level != null }}
-        
-      - name: Applies tag version
+      - name: Apply latest tag to file
         run: |
-          VERSION=${{ steps.get-latest-tag.outputs.tag }} ; echo ${VERSION} | tee ./containers/guild-ops-base/cardano-node-latest-tag.txt
-          
+          VERSION=${{ steps.previoustag.outputs.tag }} ; echo ${VERSION} | tee ./containers/guild-ops-base/cardano-node-latest-tag.txt
+                  
       - name: Check for modified files
         id: git-check
         run: echo ::set-output name=modified::$([ -z "`git status --porcelain`" ] && echo "false" || echo "true")
