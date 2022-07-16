@@ -57,11 +57,8 @@ RUN /bin/bash -c "dnf -y install epel-release &&\
         ncurses-compat-libs \
         libsqlite3x-devel \
         procps-ng &&\
-    echo "Install libsecp256k1 ... " &&\
-    if ! grep -q "/usr/local/lib:\$LD_LIBRARY_PATH" "${HOME}"/.bashrc; then
-        echo "export LD_LIBRARY_PATH=/usr/local/lib:\$LD_LIBRARY_PATH" >> "${HOME}"/.bashrc
-        export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
-    fi &&\
+    echo "export LD_LIBRARY_PATH=/usr/local/lib:\$LD_LIBRARY_PATH" >> "${HOME}"/.bashrc &&\
+    export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH &&\
     [[ ! -d "./secp256k1" ]] && git clone https://github.com/bitcoin-core/secp256k1  &&\
     cd secp256k1 &&\
     git checkout ac83be33 &&\
