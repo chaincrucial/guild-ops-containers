@@ -41,7 +41,7 @@ ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/f
 
 RUN /bin/bash -c "dnf -y install epel-release &&\
     dnf -y install python3 \
-        bc jq vim tmux wget \
+        bc jq vim tmux wget git\
         gnupg sqlite iproute \
         libtool ncurses \
         net-tools e2fsprogs \
@@ -56,8 +56,15 @@ RUN /bin/bash -c "dnf -y install epel-release &&\
         glibc-locale-source \
         ncurses-compat-libs \
         libsqlite3x-devel \
-        libsecp256k1 \
         procps-ng &&\
+    git clone https://github.com/bitcoin-core/secp256k1 &&\
+    cd secp256k1 &&\
+    git checkout ac83be33 &&\
+    ./autogen.sh &&\
+    ./configure --enable-module-schnorrsig --enable-experimental &&\
+    make &&\
+    make install &&\
+    yum -y remove git &&\
     yum -y clean all && rm -rf /var/cache/yum/ &&\
     ln -s /root/.cabal/bin/cardano-node /usr/local/bin/ &&\
     ln -s /root/.cabal/bin/cardano-cli /usr/local/bin/ &&\
