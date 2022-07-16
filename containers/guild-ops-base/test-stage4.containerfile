@@ -15,6 +15,7 @@ ENV \
 COPY --from=base-test-stage3 /opt/cardano /opt/cardano
 COPY --from=base-test-stage3 /root/tmp /root/tmp
 COPY --from=base-test-stage3 /root/.bashrc /root/.bashrc
+COPY --from=base-test-stage3 /usr/lib64/libsecp256k* /usr/lib64/
 
 COPY --from=base-test-stage3 /root/.cabal/bin/* /root/.cabal/bin/
 COPY --from=base-test-stage3 /root/.cargo/bin/* /root/.cargo/bin/
@@ -57,17 +58,6 @@ RUN /bin/bash -c "dnf -y install epel-release &&\
         ncurses-compat-libs \
         libsqlite3x-devel \
         procps-ng &&\
-    echo "export LD_LIBRARY_PATH=/usr/local/lib:\$LD_LIBRARY_PATH" >> "${HOME}"/.bashrc &&\
-    export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH &&\
-    [[ ! -d "./secp256k1" ]] && git clone https://github.com/bitcoin-core/secp256k1  &&\
-    cd secp256k1 &&\
-    git checkout ac83be33 &&\
-    ./autogen.sh &&\
-    ./configure --prefix=/usr --enable-module-schnorrsig --enable-experimental &&\
-    make &&\
-    make check &&\
-    make install &&\
-    yum -y remove git &&\
     yum -y clean all && rm -rf /var/cache/yum/ &&\
     ln -s /root/.cabal/bin/cardano-node /usr/local/bin/ &&\
     ln -s /root/.cabal/bin/cardano-cli /usr/local/bin/ &&\
