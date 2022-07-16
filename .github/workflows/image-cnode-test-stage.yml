@@ -15,13 +15,13 @@ jobs:
     - name: docker login
       run: |
         docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
-    - name: Compiling new node software suite
+    - name: Build guild-ops-cnode test
       run: |
         docker build . --file containers/guild-ops-cnode/test-stage.containerfile --compress --tag chaincrucial/guild-ops-cnode:test-stage
-    - name: docker push stage and latest
+    - name: Push image guild-ops-cnode:test
       run: |
-        ver_cnode=$(curl -s https://raw.githubusercontent.com/chaincrucial/guild-ops-containers/master/containers/guild-ops-base/cardano-node-latest-tag.txt)
-        ver_guild=$(curl -s https://raw.githubusercontent.com/chaincrucial/guild-ops-containers/master/containers/guild-ops-base/guild-operators-alpha-latest.txt)
+        ver_cnode=$(curl -s https://raw.githubusercontent.com/chaincrucial/guild-ops-containers/development/containers/guild-ops-base/cardano-node-latest-tag.txt)
+        ver_guild=$(curl -s https://raw.githubusercontent.com/chaincrucial/guild-ops-containers/development/containers/guild-ops-base/guild-operators-alpha-latest.txt)
         docker tag chaincrucial/guild-ops-cnode:test-stage chaincrucial/guild-ops-cnode:test_"${ver_cnode}"_"${ver_guild::8}"
         docker tag chaincrucial/guild-ops-cnode:test-stage chaincrucial/guild-ops-cnode:test
         docker push chaincrucial/guild-ops-cnode:test_"${ver_cnode}"_"${ver_guild::8}"
