@@ -14,6 +14,9 @@ ENV \
 
 COPY --from=base-test-stage3 /opt/cardano /opt/cardano
 COPY --from=base-test-stage3 /root/tmp /root/tmp
+COPY --from=base-test-stage3 /root/.bashrc /root/.bashrc
+COPY --from=base-test-stage3 /usr/lib64/libsecp256k* /usr/lib64/
+
 COPY --from=base-test-stage3 /root/.cabal/bin/* /root/.cabal/bin/
 COPY --from=base-test-stage3 /root/.cargo/bin/* /root/.cargo/bin/
 COPY --from=base-test-stage3 /root/bin/cardano-hw-cli/cardano-hw-cli /root/.cabal/bin/
@@ -39,7 +42,7 @@ ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/f
 
 RUN /bin/bash -c "dnf -y install epel-release &&\
     dnf -y install python3 \
-        bc jq vim tmux wget \
+        bc jq vim tmux wget git\
         gnupg sqlite iproute \
         libtool ncurses \
         net-tools e2fsprogs \
