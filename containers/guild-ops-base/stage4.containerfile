@@ -53,7 +53,7 @@ RUN /bin/bash -c "dnf -y install epel-release &&\
         glibc-langpack-en \
         glibc-locale-source \
         ncurses-compat-libs \
-        libsqlite3x-devel 
+        libsqlite3x-devel \
         procps-ng &&\
     yum -y clean all && rm -rf /var/cache/yum/ &&\
     ln -s /root/.cabal/bin/cardano-node /usr/local/bin/ &&\
