@@ -14,6 +14,8 @@ ENV \
 
 COPY --from=base-test-stage3 /opt/cardano /opt/cardano
 COPY --from=base-test-stage3 /root/tmp /root/tmp
+COPY --from=base-test-stage3 /root/.bashrc /root/.bashrc
+
 COPY --from=base-test-stage3 /root/.cabal/bin/* /root/.cabal/bin/
 COPY --from=base-test-stage3 /root/.cargo/bin/* /root/.cargo/bin/
 COPY --from=base-test-stage3 /root/bin/cardano-hw-cli/cardano-hw-cli /root/.cabal/bin/
@@ -54,6 +56,7 @@ RUN /bin/bash -c "dnf -y install epel-release &&\
         glibc-locale-source \
         ncurses-compat-libs \
         libsqlite3x-devel \
+        libsecp256k1 \
         procps-ng &&\
     yum -y clean all && rm -rf /var/cache/yum/ &&\
     ln -s /root/.cabal/bin/cardano-node /usr/local/bin/ &&\
