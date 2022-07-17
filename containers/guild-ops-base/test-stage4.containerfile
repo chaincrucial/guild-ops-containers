@@ -41,6 +41,7 @@ ADD https://hydra.iohk.io/build/7578887/download/1/staging-alonzo-genesis.json /
 ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/config-staging.json /opt/cardano/cnode/files/
 
 RUN /bin/bash -c "dnf -y install epel-release &&\
+    dnf -y update &&\
     dnf -y install python3 \
         bc jq vim tmux wget git\
         gnupg sqlite iproute \
@@ -58,7 +59,7 @@ RUN /bin/bash -c "dnf -y install epel-release &&\
         ncurses-compat-libs \
         libsqlite3x-devel \
         procps-ng &&\
-    yum -y clean all && rm -rf /var/cache/yum/ &&\
+    dnf -y clean all && rm -rf /var/cache/yum/ &&\
     ln -s /root/.cabal/bin/cardano-node /usr/local/bin/ &&\
     ln -s /root/.cabal/bin/cardano-cli /usr/local/bin/ &&\
     ln -s /root/.cargo/bin/cncli /usr/local/bin/ &&\
