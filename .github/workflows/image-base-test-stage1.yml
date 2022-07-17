@@ -22,4 +22,4 @@ jobs:
         docker push chaincrucial/guild-ops-base:test-stage1
     - name: container trigger dispatch stage 2
       run: |
-        curl -XPOST -u "${{ secrets.REPO_SCOPED_USER }}:${{ secrets.REPO_SCOPED_TOKEN }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/chaincrucial/guild-ops-containers/actions/workflows/image-base-test-stage2.yml/dispatches --data '{"ref": "main"}'
+        curl -XPOST -u "${{ secrets.REPO_SCOPED_USER }}:${{ secrets.REPO_SCOPED_TOKEN }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/chaincrucial/guild-ops-containers/actions/workflows/image-base-test-stage2.yml/dispatches --data '{"ref": "development"}'
