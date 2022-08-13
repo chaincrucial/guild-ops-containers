@@ -1,10 +1,12 @@
-name: Scan Docker containers using Snyk 
+name: Scan Docker containers using Snyk
+
 on:
   workflow_dispatch:
   push:
     branches: [ development ]
   pull_request:
     branches: [ development ]
+
 jobs:
   security-scan:
     runs-on: ubuntu-latest
