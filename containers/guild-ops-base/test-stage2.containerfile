@@ -6,12 +6,12 @@ RUN rm -rf ./cardano-node ;\
     pwd ; ls -l
 
 WORKDIR /cardano-node
-RUN curl -o cardano-node-latest.txt https://raw.githubusercontent.com/chaincrucial/guild-ops-containers/master/containers/guild-ops-base/cardano-node-latest.txt &&\
-    CNODE_VERSION=$(cat cardano-node-latest.txt) &&\
-    echo "Checking out Cardano node: ${CNODE_VERSION}" \
+RUN curl -o cardano-node-latest-tag.txt https://raw.githubusercontent.com/chaincrucial/guild-ops-containers/development/containers/guild-ops-base/cardano-node-latest-tag.txt &&\
+    CNODE_VERSION=$(cat cardano-node-latest-tag.txt) &&\
+    echo "Checking out Cardano node: tags/${CNODE_VERSION}" \
     git fetch --tags --all &&\
     git pull &&\
-    git checkout "${CNODE_VERSION}" &&\
+    git checkout "tags/${CNODE_VERSION}" &&\
     git status &&\
     curl -o cabal.project.local https://raw.githubusercontent.com/cardano-community/guild-operators/alpha/files/cabal.project.local &&\
     /opt/cardano/cnode/scripts/cabal-build-all.sh -l &&\

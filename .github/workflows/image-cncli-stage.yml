@@ -16,7 +16,7 @@ jobs:
         docker build . --file containers/guild-ops-cncli/stage.containerfile --compress --tag chaincrucial/guild-ops-cncli:stage
     - name: docker push stage and latest
       run: |
-        ver_cncli=$(curl -s https://raw.githubusercontent.com/chaincrucial/guild-ops-containers/master/containers/guild-ops-base/cncli-latest.txt)
+        ver_cncli=$(curl -s https://raw.githubusercontent.com/chaincrucial/guild-ops-containers/main/containers/guild-ops-base/cncli-latest.txt)
         docker tag chaincrucial/guild-ops-cncli:stage chaincrucial/guild-ops-cncli:latest
         docker tag chaincrucial/guild-ops-cncli:stage chaincrucial/guild-ops-cncli:"${ver_cncli}"
         docker push chaincrucial/guild-ops-cncli:latest

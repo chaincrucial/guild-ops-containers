@@ -14,10 +14,7 @@ jobs:
     - name: Compiling new node software suite
       run: |
         docker build . --file containers/guild-ops-cncli/test-stage.containerfile --compress --tag chaincrucial/guild-ops-cncli:test-stage
-    - name: docker push stage and latest
+    - name: Push image test-stage and test
       run: |
-        #ver_cncli=$(curl -s https://raw.githubusercontent.com/chaincrucial/guild-ops-containers/master/containers/guild-ops-base/cncli-latest-tag.txt)
-        #docker tag chaincrucial/guild-ops-cncli:test-stage chaincrucial/guild-ops-cncli:test_"${ver_cncli}"
         docker tag chaincrucial/guild-ops-cncli:test-stage chaincrucial/guild-ops-cncli:test
-        #docker push chaincrucial/guild-ops-cncli:test_"${ver_cncli}"
         docker push chaincrucial/guild-ops-cncli:test

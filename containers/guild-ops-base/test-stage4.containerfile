@@ -14,6 +14,9 @@ ENV \
 
 COPY --from=base-test-stage3 /opt/cardano /opt/cardano
 COPY --from=base-test-stage3 /root/tmp /root/tmp
+COPY --from=base-test-stage3 /root/.bashrc /root/.bashrc
+COPY --from=base-test-stage3 /usr/lib64/libsecp256k* /usr/lib64/
+
 COPY --from=base-test-stage3 /root/.cabal/bin/* /root/.cabal/bin/
 COPY --from=base-test-stage3 /root/.cargo/bin/* /root/.cargo/bin/
 COPY --from=base-test-stage3 /root/bin/cardano-hw-cli/cardano-hw-cli /root/.cabal/bin/
@@ -38,8 +41,9 @@ ADD https://hydra.iohk.io/build/7578887/download/1/staging-alonzo-genesis.json /
 ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/config-staging.json /opt/cardano/cnode/files/
 
 RUN /bin/bash -c "dnf -y install epel-release &&\
+    dnf -y update &&\
     dnf -y install python3 \
-        bc jq vim tmux wget \
+        bc jq vim tmux wget git\
         gnupg sqlite iproute \
         libtool ncurses \
         net-tools e2fsprogs \
@@ -53,8 +57,9 @@ RUN /bin/bash -c "dnf -y install epel-release &&\
         glibc-langpack-en \
         glibc-locale-source \
         ncurses-compat-libs \
-        libsqlite3x-devel &&\
-    yum -y clean all && rm -rf /var/cache/yum/ &&\
+        libsqlite3x-devel \
+        procps-ng &&\
+    dnf -y clean all && rm -rf /var/cache/yum/ &&\
     ln -s /root/.cabal/bin/cardano-node /usr/local/bin/ &&\
     ln -s /root/.cabal/bin/cardano-cli /usr/local/bin/ &&\
     ln -s /root/.cargo/bin/cncli /usr/local/bin/ &&\
