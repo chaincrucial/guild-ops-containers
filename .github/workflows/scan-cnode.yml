@@ -1,0 +1,21 @@
+---
+name: Scan Docker containers using Snyk
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [development]
+  pull_request:
+    branches: [development]
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Snyk to check Docker image for vulnerabilities
+        uses: snyk/actions/docker@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          image: chaincrucial/guild-ops-cnode:test
+          json: true
