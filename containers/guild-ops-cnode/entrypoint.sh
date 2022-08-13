@@ -24,7 +24,7 @@ export UPDATE_CHECK='N'
 echo "NODE: $HOSTNAME";
 cardano-node --version;
 
-if ! [[ -z "${NETWORK}" ]] ; then 
+if [[ -n "${NETWORK}" ]] ; then 
   ln -sf "${CNODE_HOME}/files/${NETWORK}-byron-genesis.json" "${CNODE_HOME}/files/byron-genesis.json" &&\
   ln -sf "${CNODE_HOME}/files/${NETWORK}-shelley-genesis.json" "${CNODE_HOME}/files/shelley-genesis.json" &&\
   ln -sf "${CNODE_HOME}/files/${NETWORK}-alonzo-genesis.json" "${CNODE_HOME}/files/alonzo-genesis.json" &&\
