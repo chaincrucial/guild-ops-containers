@@ -7,10 +7,9 @@
 name: Lint Code Base
 
 on:
-  push:
-    branches: [ development ]
+  workflow_dispatch:
   pull_request:
-    branches: [ development ]
+
 jobs:
   run-lint:
     runs-on: ubuntu-latest
