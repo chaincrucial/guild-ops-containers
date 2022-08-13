@@ -58,11 +58,13 @@ jobs:
           export BRANCH=${{ steps.pr_branch.outputs.branch }}
           export COMMIT=$(git rev-parse --short "$GITHUB_SHA")
           docker build . \
-            --file containers/pre-merge/rockylinux8_prereqs.sh_-l.containerfile \
+            --file \
+              containers/pre-merge/rockylinux8_prereqs.sh_-l.containerfile \
             --compress \
             --build-arg BRANCH \
             --build-arg COMMIT \
-            --tag ghcr.io/chaincrucial/pre-merge-rockylinux8:prereqs_-l_${COMMIT}
+            --tag \
+              ghcr.io/chaincrucial/pre-merge-rockylinux8:prereqs_-l_${COMMIT}
       - name: Push pre-merge-rockylinux8:prereqs_-l_${COMMIT}
         run: |
           export COMMIT=$(git rev-parse --short "$GITHUB_SHA")
