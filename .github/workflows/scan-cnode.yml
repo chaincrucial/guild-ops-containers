@@ -1,4 +1,4 @@
-name: Example workflow for Docker using Snyk 
+name: Scan Docker containers using Snyk 
 on:
   workflow_dispatch:
   push:
@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ development ]
 jobs:
-  security:
+  security-scan:
     runs-on: ubuntu-latest
     steps:
     - name: Run Snyk to check Docker image for vulnerabilities
@@ -15,3 +15,4 @@ jobs:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       with:
         image: chaincrucial/guild-ops-cnode:test
+        json: true
