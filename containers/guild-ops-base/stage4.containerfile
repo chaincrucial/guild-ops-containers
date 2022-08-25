@@ -31,11 +31,18 @@ ADD https://hydra.iohk.io/build/7578887/download/1/testnet-shelley-genesis.json 
 ADD https://hydra.iohk.io/build/7578887/download/1/testnet-alonzo-genesis.json /opt/cardano/cnode/files/
 ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/config-testnet.json /opt/cardano/cnode/files/
  
-# HYDRA STAGING TESTNET CFG
-ADD https://hydra.iohk.io/build/7578887/download/1/staging-byron-genesis.json /opt/cardano/cnode/files/
-ADD https://hydra.iohk.io/build/7578887/download/1/staging-shelley-genesis.json /opt/cardano/cnode/files/
-ADD https://hydra.iohk.io/build/7578887/download/1/staging-alonzo-genesis.json /opt/cardano/cnode/files/
-ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/config-staging.json /opt/cardano/cnode/files/
+# HYDRA PREVIEW NETWORK CFG
+ADD https://book.world.dev.cardano.org/environments/preview/byron-genesis.json /opt/cardano/cnode/files/
+ADD https://book.world.dev.cardano.org/environments/preview/shelley-genesis.json /opt/cardano/cnode/files/
+ADD https://book.world.dev.cardano.org/environments/preview/alonzo-genesis.json /opt/cardano/cnode/files/
+ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/config-preview.json /opt/cardano/cnode/files/
+
+# HYDRA PREPROD NETWORK CFG
+ADD https://book.world.dev.cardano.org/environments/preprod/byron-genesis.json /opt/cardano/cnode/files/
+ADD https://book.world.dev.cardano.org/environments/preprod/shelley-genesis.json /opt/cardano/cnode/files/
+ADD https://book.world.dev.cardano.org/environments/preprod/alonzo-genesis.json /opt/cardano/cnode/files/
+ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/config-preprod.json /opt/cardano/cnode/files/
+
 
 RUN /bin/bash -c "dnf -y install epel-release &&\
     dnf -y update &&\
