@@ -44,7 +44,7 @@ ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/f
 ADD https://book.world.dev.cardano.org/environments/preprod/byron-genesis.json /opt/cardano/cnode/files/
 ADD https://book.world.dev.cardano.org/environments/preprod/shelley-genesis.json /opt/cardano/cnode/files/
 ADD https://book.world.dev.cardano.org/environments/preprod/alonzo-genesis.json /opt/cardano/cnode/files/
-ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/config-preprod.json /opt/cardano/cnode/files/
+ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/config-preprod.json /opt/cardano/cnode/files/config-preprod.json
 
 
 RUN /bin/bash -c "dnf -y install epel-release &&\
