@@ -18,6 +18,10 @@ COPY --from=base-stage3 /root/.cabal/bin/* /root/.cabal/bin/
 COPY --from=base-stage3 /root/.cargo/bin/* /root/.cargo/bin/
 COPY --from=base-stage3 /root/bin/cardano-hw-cli/cardano-hw-cli /root/.cabal/bin/
 
+COPY --from=base-test-stage3 /usr/include/secp256k* /usr/include/
+COPY --from=base-test-stage3 /usr/lib64/libsecp256k* /usr/lib64/
+COPY --from=base-test-stage3 /usr/lib64/pkgconfig/libsecp256k* /usr/lib64/pkgconfig/
+
 RUN /bin/bash -c "dnf -y install epel-release &&\
     dnf -y update &&\
     dnf -y install python3 \
