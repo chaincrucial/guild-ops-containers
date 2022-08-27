@@ -4,6 +4,8 @@ ADD https://raw.githubusercontent.com/chaincrucial/guild-ops-containers/main/con
 
 ADD https://raw.githubusercontent.com/chaincrucial/guild-ops-containers/main/containers/guild-ops-cnode/entrypoint.sh /entrypoint.sh
 
-RUN ["chmod", "+x", "/entrypoint.sh", "/healthcheck.sh"]
+ADD https://raw.githubusercontent.com/chaincrucial/guild-ops-containers/main/containers/guild-ops-cnode/prepNetworks.sh /prepNetworks.sh
+
+RUN ["chmod", "+x", "/entrypoint.sh", "/healthcheck.sh", "/prepNetworks.sh"]
 
 ENTRYPOINT ["/entrypoint.sh"]
