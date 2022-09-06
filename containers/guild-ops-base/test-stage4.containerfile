@@ -15,7 +15,9 @@ ENV \
 COPY --from=base-test-stage3 /opt/cardano /opt/cardano
 COPY --from=base-test-stage3 /root/tmp /root/tmp
 COPY --from=base-test-stage3 /root/.bashrc /root/.bashrc
+COPY --from=base-test-stage3 /usr/include/secp256k* /usr/include/
 COPY --from=base-test-stage3 /usr/lib64/libsecp256k* /usr/lib64/
+COPY --from=base-test-stage3 /usr/lib64/pkgconfig/libsecp256k* /usr/lib64/pkgconfig/
 
 COPY --from=base-test-stage3 /root/.cabal/bin/* /root/.cabal/bin/
 COPY --from=base-test-stage3 /root/.cargo/bin/* /root/.cargo/bin/
