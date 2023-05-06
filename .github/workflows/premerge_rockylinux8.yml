@@ -23,12 +23,12 @@ jobs:
         shell: bash
         run: echo "##[set-output name=branch;]${GITHUB_HEAD_REF}"
         id: pr_branch
-      - name: Testing prereqs.sh
+      - name: Testing guild-deploy.sh
         run: |
           export BRANCH=${{ steps.pr_branch.outputs.branch }}
           export COMMIT=$(git rev-parse --short "$GITHUB_SHA")
           docker build . \
-            --file containers/pre-merge/rockylinux8_prereqs.sh.containerfile \
+            --file containers/pre-merge/rockylinux8_guild-deploy.sh.containerfile \
             --compress \
             --build-arg BRANCH \
             --build-arg COMMIT \
@@ -53,13 +53,13 @@ jobs:
         shell: bash
         run: echo "##[set-output name=branch;]${GITHUB_HEAD_REF}"
         id: pr_branch
-      - name: Testing prereqs.sh -l
+      - name: Testing guild-deploy.sh -s l
         run: |
           export BRANCH=${{ steps.pr_branch.outputs.branch }}
           export COMMIT=$(git rev-parse --short "$GITHUB_SHA")
           docker build . \
             --file \
-              containers/pre-merge/rockylinux8_prereqs.sh_-l.containerfile \
+              containers/pre-merge/rockylinux8_guild-deploy.sh_-l.containerfile \
             --compress \
             --build-arg BRANCH \
             --build-arg COMMIT \
