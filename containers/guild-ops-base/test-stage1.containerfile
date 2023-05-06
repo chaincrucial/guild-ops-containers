@@ -3,7 +3,7 @@ FROM rockylinux/rockylinux:8
 ENV PATH=/root/.cabal/bin:/root/.ghcup/bin:/root/.local/bin:/root/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
 
 RUN /bin/bash -c "dnf -y update &&\
-    dnf -y install epel-release &&\
+    dnf -y install findutils epel-release &&\
     dnf -y clean all &&\
     mkdir -pv /root/tmp /root/.{cabal,ghcup}/bin &&\
     cd /root/tmp &&\
