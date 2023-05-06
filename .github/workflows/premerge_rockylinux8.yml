@@ -53,7 +53,7 @@ jobs:
         shell: bash
         run: echo "##[set-output name=branch;]${GITHUB_HEAD_REF}"
         id: pr_branch
-      - name: Testing guild-deploy.sh -l
+      - name: Testing guild-deploy.sh -s l
         run: |
           export BRANCH=${{ steps.pr_branch.outputs.branch }}
           export COMMIT=$(git rev-parse --short "$GITHUB_SHA")

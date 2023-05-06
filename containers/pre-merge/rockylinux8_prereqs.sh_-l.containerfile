@@ -20,4 +20,4 @@ RUN set -x && apt-get -y update && apt-get -y --no-install-recommends install cu
     chmod 0755 guild-deploy.sh &&\
     export SUDO='N' &&\
     export UPDATE_CHECK='N' &&\
-    ./guild-deploy.sh -l -b "${BRANCH}"
+    ./guild-deploy.sh -s l -b "${BRANCH}"
