@@ -16,8 +16,8 @@ WORKDIR /
 RUN set -x && apt-get -y update && apt-get -y --no-install-recommends install curl git ca-certificates gnupg apt-utils udev &&\
     rm -rf /var/lib/apt/lists/* &&\
     mkdir -pv /root/.cabal/bin /root/.ghcup/bin &&\
-    curl --silent --show-error --insecure --output prereqs.sh "https://raw.githubusercontent.com/chaincrucial/guild-ops-containers/${BRANCH}/scripts/cnode-helper-scripts/prereqs.sh" &&\
-    chmod 0755 prereqs.sh &&\
+    curl --silent --show-error --insecure --output guild-deploy.sh "https://raw.githubusercontent.com/chaincrucial/guild-ops-containers/${BRANCH}/scripts/cnode-helper-scripts/guild-deploy.sh" &&\
+    chmod 0755 guild-deploy.sh &&\
     export SUDO='N' &&\
     export UPDATE_CHECK='N' &&\
-    ./prereqs.sh -l -b "${BRANCH}"
+    ./guild-deploy.sh -l -b "${BRANCH}"
