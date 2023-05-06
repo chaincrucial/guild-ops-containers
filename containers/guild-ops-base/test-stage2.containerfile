@@ -13,6 +13,7 @@ RUN curl -o cardano-node-latest-tag.txt https://raw.githubusercontent.com/chainc
     git pull &&\
     git checkout "tags/${CNODE_VERSION}" &&\
     git status &&\
+    sed -i '/      cardano-ping/d' shell.nix &&\
     curl -o cabal.project.local https://raw.githubusercontent.com/cardano-community/guild-operators/alpha/files/cabal.project.local &&\
     /opt/cardano/cnode/scripts/cabal-build-all.sh -l &&\
     cabal install cardano-ping &&\
