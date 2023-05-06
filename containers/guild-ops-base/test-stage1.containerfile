@@ -8,4 +8,4 @@ RUN /bin/bash -c "dnf -y update &&\
     mkdir -pv /root/tmp /root/.{cabal,ghcup}/bin &&\
     cd /root/tmp &&\
     curl -sS -o guild-deploy.sh https://raw.githubusercontent.com/cardano-community/guild-operators/alpha/scripts/cnode-helper-scripts/guild-deploy.sh &&\
-    chmod 755 guild-deploy.sh && export SUDO='N' ; export UPDATE_CHECK='N' ; ./guild-deploy.sh -s l -b alpha"
+    chmod 755 guild-deploy.sh && export SUDO='N' ; export UPDATE_CHECK='N' ; sed -i 's/,crb/,powertools/' ./guild-deploy.sh ; ./guild-deploy.sh -s l -b alpha"
