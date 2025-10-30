@@ -1,1 +1,1 @@
-10.5.1-docker
+leios-202510-demo
